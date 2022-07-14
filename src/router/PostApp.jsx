@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Welcome from '../components/post/Welcome'
 import Login from '../components/auth/Login'
+import NotFound from '../components/NotFound'
 
 const PostApp = () => {
   return (
