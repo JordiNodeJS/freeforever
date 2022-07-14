@@ -5,7 +5,7 @@
 
 @layer base {
   body {
-    @apply m-4;
+    @apply m-0;
   }
 }
 

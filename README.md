@@ -1,24 +1,16 @@
-# Tailwind CSS React Template
-All configuration you need to start designing with Tailwindcss
+# FREE FOR EVER
+## Getting the project started
+- Fork the project
+- `` npm install `` 😎 it'll install all dependencies to run the project
+- `` npm run dev `` 👉 to start development server or
+- `` npm run build `` 👉 to compile the project and `` npm run preview `` 👉 to see the production server working
 
-### Use DEGIT for clone the project as template
-npm install -g degit
+## Learn more about Vite
+[Vite](https://vitejs.dev/)
+ (French word for "quick", pronounced /vit/, like "veet") is a build tool that aims to provide a faster and leaner development experience for modern web projects.
 
-Use it as:
-```bash
-mkdir my-project
-cd my-project
-
-degit https://github.com/JordiNodeJS/template-react-tailwind-daisyui
-```
-or
-
-```bash
-degit https://github.com/JordiNodeJS/template-react-tailwind-daisyui.git
-```
-
-it creates same template
-
-## Components base on tailwind
-Copy the templates in **[daisyUI](https://daisyui.com/)** and transform in jsx with:
-**[html to jsx](https://transform.tools/html-to-jsx)**
+## Tecnological stack
+- [Vite](https://vitejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/) with [daisyUI](https://daisyui.com/)
+- [React](https://reactjs.org/)
+    - [React Router v6](https://reactrouter.com/docs/en/v6/getting-started/overview)
