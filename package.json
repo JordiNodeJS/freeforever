@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "daisyui": "^2.19.0",
+    "firebase": "^9.9.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
-    "redux": "^4.2.0"
+    "redux": "^4.2.0",
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@redux-devtools/core": "^3.13.1",
