@@ -22,3 +22,4 @@
     - [Redux-ES](https://es.redux.js.org/)
     - [React-Redux](https://react-redux.js.org/)
         - `` npm install react-redux redux ``
+        - `` npm install --save-dev @redux-devtools/core ``
