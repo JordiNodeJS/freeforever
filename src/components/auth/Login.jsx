@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { login } from '../../actions/auth'
+import { login, startGoogleLogin } from '../../actions/auth'
 import { useForm } from '../../hooks/useForm'
 import { startLoginEmailPassword } from '../../actions/auth'
 
@@ -19,6 +19,10 @@ const Login = () => {
     e.preventDefault()
     console.log(email, password)
     dispatch(startLoginEmailPassword(email, password))
+  }
+  const handleGoogleLogin = () => {
+    dispatch(startGoogleLogin())
+
   }
 
   return (
@@ -70,7 +74,7 @@ const Login = () => {
               </Link>
             </div>
             <div className='mt-10 flex justify-center'>
-              <button className='btn btn-ghost  group h-12 px-6 border-2  rounded-full transition duration-300'>
+              <button onClick={handleGoogleLogin}  className='btn btn-ghost  group h-12 px-6 border-2  rounded-full transition duration-300'>
                 <div className='relative flex space-x-4 justify-start'>
                   <img
                     src='https://tailus.io/sources/blocks/social/preview/images/google.svg'
