@@ -26,4 +26,5 @@
   - [Async Logic and Data Fetching](https://redux.js.org/docs/advanced/AsyncActions.html)
     - [Redux Thunk](https://www.npmjs.com/package/redux-thunk)
 
+- validator.js is a JavaScript library that validates the structure of JavaScript objects.
 - Backend with [Firebase](https://console.firebase.google.com/)

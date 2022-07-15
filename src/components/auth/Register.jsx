@@ -1,4 +1,5 @@
 import { useForm } from "../../hooks/useForm"
+import validator from "validator"
 
 const Register = () => {
  const [formValues, handleInputChange] = useForm({
@@ -11,10 +12,24 @@ const Register = () => {
   const { name, email, password, password2 } = formValues
   const handleSubmit = e => {
     e.preventDefault()
-    console.log(name, email, password, password2)
+    if (isFormValid()) {
+      console.log(name, email, password)
+    }
   }
   const isFormValid = () => {
-    return password === password2
+    if (name.trim().length === 0) {
+      console.log('Name is required')
+      return false
+    }
+    if (!validator.isEmail(email)) { 
+      console.log('Email is invalid')
+      return false
+    }
+    if ( password !== password2 || password.length < 5) {
+      console.log('Passwords do not match')
+      return false
+    }
+    return true
   }
 
   return (
@@ -31,12 +46,13 @@ const Register = () => {
                 <span className='label-text'>Name</span>
               </label>
               <input name='name' value={name} onChange={ handleInputChange} type='text' placeholder='name' className='input input-bordered' />
+              <p className="mt-2 font-thin text-sm text-warning">Alert</p>
             </div>
             <div className='form-control'>
               <label className='label'>
                 <span className='label-text'>Email</span>
               </label>
-              <input name='email' value={email} onChange={ handleInputChange} type='email' placeholder='email' className='input input-bordered' />
+              <input name='email' value={email} onChange={ handleInputChange} type='text' placeholder='email' className='input input-bordered' />
             </div>
             <div className='form-control'>
               <label className='label'>
