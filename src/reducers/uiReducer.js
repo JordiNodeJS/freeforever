@@ -4,7 +4,7 @@ const initialState = {
   loading: false,
   msgError: null,
 }
-
+// reducer for the form validator messenges state
 export const uiReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.uiSetError:
