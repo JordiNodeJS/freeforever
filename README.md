@@ -25,6 +25,7 @@
     - `npm install --save-dev @redux-devtools/core`
   - [Async Logic and Data Fetching](https://redux.js.org/docs/advanced/AsyncActions.html)
     - [Redux Thunk](https://www.npmjs.com/package/redux-thunk)
+    - [Writing Logic with Thunks](https://redux.js.org/usage/writing-logic-thunks)
 
 - validator.js is a JavaScript library that validates the structure of JavaScript objects.
 - Backend with [Firebase](https://console.firebase.google.com/)
