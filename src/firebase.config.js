@@ -3,8 +3,6 @@ import 'firebase/compat/firestore'
 import 'firebase/compat/auth'
 import { updateProfile } from 'firebase/auth'
 
-
-
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN,

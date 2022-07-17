@@ -1,10 +1,9 @@
 import { firebase, googleAuthProvider, updateProfile } from '../firebase.config'
 import { types } from '../types'
-import { startLoading, finishLoading, setError, removeError } from './ui'
+import { startLoading, finishLoading } from './ui'
 
 export const startLoginEmailPassword = (email, password) => {
   return dispatch => {
-    dispatch(removeError())
     dispatch(startLoading())
 
     firebase
@@ -15,7 +14,6 @@ export const startLoginEmailPassword = (email, password) => {
 
         dispatch(finishLoading())
       }).catch(err => {
-        dispatch(setError(err.message))
         dispatch(finishLoading())
       }
       )

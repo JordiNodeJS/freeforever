@@ -1,10 +1,10 @@
 export const types = {
-  login: 'LOGIN',
-  logout: 'LOGOUT',
+  login: 'AUTH_LOGIN',
+  logout: 'AUTH_LOGOUT',
 
-  uiSetError: 'SET_ERROR',
-  uiRemoveError: 'REMOVE_ERROR',
+  uiSetError: 'MSG_SET_ERROR',
+  uiRemoveError: 'MSG_REMOVE_ERROR',
 
-  startLoading: 'START_LOADING',
-  finishLoading: 'FINISH_LOADING',
+  startLoading: 'MSG_START_LOADING',
+  finishLoading: 'MSG_FINISH_LOADING',
 }
