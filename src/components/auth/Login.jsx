@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { startGoogleLogin } from '../../actions/auth'
 import { useForm } from '../../hooks/useForm'
@@ -11,6 +11,7 @@ const Login = () => {
   })
 
   const dispatch = useDispatch()
+  const {loading} = useSelector(state => state.msg)
 
   const { email, password } = formValues
 
@@ -61,7 +62,7 @@ const Login = () => {
               />
             </div>
             <div className='form-control mt-6'>
-              <button type='submit' className='btn btn-primary'>
+              <button type='submit' disabled={loading} className='btn btn-primary'>
                 Login
               </button>
             </div>

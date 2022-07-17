@@ -6,3 +6,10 @@ export const setError = err => ({
 export const removeError = _ => ({
   type: types.uiRemoveError,
 })
+
+export const startLoading = _ => ({
+  type: types.startLoading,
+})
+export const finishLoading = _ => ({
+  type: types.finishLoading,
+})
