@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app'
-import "firebase/compat/firestore"
-import "firebase/compat/auth";
+import 'firebase/compat/firestore'
+import 'firebase/compat/auth'
+import { updateProfile } from 'firebase/auth'
 
 
 
@@ -18,5 +19,5 @@ const db = firebase.firestore()
 
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 
-export {googleAuthProvider, db, firebase }
+export { googleAuthProvider, db, firebase, updateProfile }
 // https://firebase.google.com/docs/web/modular-upgrade

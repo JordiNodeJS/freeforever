@@ -7,7 +7,7 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 
 const reducers = combineReducers({
   auth: authReducer,
-  ui: msgReducer
+  msg: msgReducer
 })
 
 export const store = createStore(

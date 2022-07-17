@@ -1,4 +1,4 @@
-import { firebase, googleAuthProvider } from '../firebase.config'
+import { firebase, googleAuthProvider, updateProfile } from '../firebase.config'
 import { types } from '../types'
 
 export const startLoginEmailPassword = (email, password) => {
@@ -6,6 +6,24 @@ export const startLoginEmailPassword = (email, password) => {
     setTimeout(() => {
       dispatch(login(email, password))
     }, 3500)
+  }
+}
+
+export const startLoginEmailPasswordName = (email, password, name) => {
+  return dispatch => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(async ({ user }) => {
+        await updateProfile(user, {
+          displayName: name,
+        })
+        dispatch(login(user.uid, user.displayName))
+        console.log(user)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 }
 

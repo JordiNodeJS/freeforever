@@ -5,14 +5,15 @@ import { removeError, setError } from '../../actions/ui'
 import '@animxyz/core'
 import { XyzTransitionGroup, XyzTransition } from '@animxyz/react'
 import './Register.css'
+import { startLoginEmailPasswordName } from '../../actions/auth'
 const Register = () => {
   const dispatch = useDispatch()
 
-  const { msgError } = useSelector(state => state.ui)
+  const { msgError } = useSelector(state => state.msg)
 
   const [formValues, handleInputChange] = useForm({
     name: 'Paco',
-    email: 'paco@gmail.com',
+    email: 'virgie22g_c670s@yefx.info',
     password: '123456',
     password2: '123456',
   })
@@ -21,7 +22,7 @@ const Register = () => {
   const handleSubmit = e => {
     e.preventDefault()
     if (isFormValid()) {
-      console.log(name, email, password)
+      dispatch(startLoginEmailPasswordName(email, password, name))
     }
   }
   const isFormValid = () => {
