@@ -8,6 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@animxyz/core": "^0.6.6",
+    "@animxyz/react": "^0.6.6",
     "daisyui": "^2.19.0",
     "firebase": "^9.9.0",
     "react": "^18.0.0",
