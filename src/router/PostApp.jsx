@@ -9,6 +9,9 @@ import { firebase } from '../firebase.config'
 import { useDispatch } from 'react-redux'
 import { login } from '../actions/auth'
 import SideBar from '../components/auth/SideBar'
+import PrivateRoutes from './PrivateRouters'
+import Home from '../components/post/Home'
+import Post from '../components/post/Post'
 
 const PostApp = () => {
   const [checkAuth, setCheckAuth] = useState(true)
@@ -40,6 +43,11 @@ const PostApp = () => {
         <Route path='/' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/welcome' element={<Welcome />} />
+        <Route element={<PrivateRoutes auth={isLogin} />}>
+          <Route path='home' element={<Home />} />
+          <Route path='post' element={<Post />} />
+          <Route path='post/:id' element={<Post />} />
+        </Route>
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
