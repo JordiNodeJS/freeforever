@@ -28,4 +28,11 @@
     - [Writing Logic with Thunks](https://redux.js.org/usage/writing-logic-thunks)
 
 - validator.js is a JavaScript library that validates the structure of JavaScript objects.
+
+- [Animxyz](https://animxyz.com/) AnimXYZ is an animation library that simplifies adding CSS animations to a website or web application. AnimXYZ animations all compile to regular CSS behind the scenes, meaning they generally behave the same way CSS animations do. Once the page loads, the elements trigger automatically, run for the specified number of iterations, and then return to their original state.
+    - [Article blog](https://blog.logrocket.com/animate-react-app-animxyz/)
+    - ``npm install @animxyz/core``
+
+
+
 - Backend with [Firebase](https://console.firebase.google.com/)
