@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { firebase } from '../firebase.config'
 import { useDispatch } from 'react-redux'
 import { login } from '../actions/auth'
+import SideBar from '../components/auth/SideBar'
 
 const PostApp = () => {
   const [checkAuth, setCheckAuth] = useState(true)
@@ -33,6 +34,7 @@ const PostApp = () => {
 
   return (
     <BrowserRouter>
+      <SideBar />
       <Routes>
         <Route path='/auth' element={<Login />} />
         <Route path='/' element={<Login />} />

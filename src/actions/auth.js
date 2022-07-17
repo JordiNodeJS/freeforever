@@ -13,10 +13,10 @@ export const startLoginEmailPassword = (email, password) => {
         dispatch(login(user.uid, user.displayName))
 
         dispatch(finishLoading())
-      }).catch(err => {
+      })
+      .catch(err => {
         dispatch(finishLoading())
-      }
-      )
+      })
   }
 }
 
@@ -49,4 +49,22 @@ export const login = (uid, displayName) => ({
     uid,
     displayName,
   },
+})
+
+export const startLogout = () => {
+  return dispatch => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        dispatch(logout())
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}
+
+export const logout = () => ({
+  type: types.logout,
 })
