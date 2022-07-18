@@ -1,7 +1,9 @@
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/firestore'
-import 'firebase/compat/auth'
-import { updateProfile } from 'firebase/auth'
+// import firebase from 'firebase/compat/app'
+// import 'firebase/compat/firestore'
+// import 'firebase/compat/auth'
+// import { updateProfile } from 'firebase/auth'
+import { initializeApp } from 'firebase/app';
+import { getFirestore} from 'firebase/firestore/lite';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -12,10 +14,14 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_APP_ID,
 }
 
-firebase.initializeApp(firebaseConfig)
-const db = firebase.firestore()
+export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 
-const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 
-export { googleAuthProvider, db, firebase, updateProfile }
+// firebase.initializeApp(firebaseConfig)
+// const db = firebase.firestore()
+
+// const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
+
+// export { googleAuthProvider, db, firebase, updateProfile }
 // https://firebase.google.com/docs/web/modular-upgrade
