@@ -36,15 +36,7 @@ export const startRegisterEmailPasswordName = (email, password, name) => {
       })
       .catch( err => {
         // alert(err.message)
-        toast('🦄 ' + err.message, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          });
+        toast.error('🦄 ' + err.message);
         console.log('🦄',err.message)
         dispatch(setError(err.message))
       })
@@ -64,6 +56,9 @@ export const login = (uid, displayName) => ({
   },
 })
 
+export const logout = () => ({
+  type: types.logout,
+})
 export const startLogout = () => {
   return dispatch => {
     firebase
@@ -78,6 +73,3 @@ export const startLogout = () => {
   }
 }
 
-export const logout = () => ({
-  type: types.logout,
-})
