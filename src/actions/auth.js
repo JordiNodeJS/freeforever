@@ -1,6 +1,7 @@
 import { firebase, googleAuthProvider, updateProfile } from '../firebase.config'
 import { types } from '../types'
-import { startLoading, finishLoading } from './ui'
+import { startLoading, finishLoading, setError } from './ui'
+import { toast } from 'react-toastify';
 
 export const startLoginEmailPassword = (email, password) => {
   return dispatch => {
@@ -15,12 +16,13 @@ export const startLoginEmailPassword = (email, password) => {
         dispatch(finishLoading())
       })
       .catch(err => {
+      
         dispatch(finishLoading())
       })
   }
 }
 
-export const startLoginEmailPasswordName = (email, password, name) => {
+export const startRegisterEmailPasswordName = (email, password, name) => {
   return dispatch => {
     firebase
       .auth()
@@ -32,8 +34,19 @@ export const startLoginEmailPasswordName = (email, password, name) => {
         dispatch(login(user.uid, user.displayName))
         console.log(user)
       })
-      .catch(error => {
-        console.log(error)
+      .catch( err => {
+        // alert(err.message)
+        toast('🦄 ' + err.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
+        console.log('🦄',err.message)
+        dispatch(setError(err.message))
       })
   }
 }
