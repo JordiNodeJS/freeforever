@@ -1,12 +1,12 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import Welcome from '../components/post/Welcome'
 import Login from '../components/auth/Login'
 import Register from '../components/auth/Register'
 import NotFound from '../components/NotFound'
 import { useEffect, useState } from 'react'
-import { firebase } from '../firebase.config'
-import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { app as appfirebase } from '../firebase.config'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
 import { login } from '../actions/auth'
 import SideBar from '../components/auth/SideBar'
@@ -21,11 +21,15 @@ const PostApp = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
+    // const app = appfirebase
+    const auth = getAuth()
+    onAuthStateChanged(auth, user => {
       if (user?.uid) {
         console.log('user logged in')
         dispatch(login(user.uid, user.displayName))
         setIsLogin(true)
+       
+        
       } else {
         console.log('user logged out')
         setIsLogin(false)
@@ -49,15 +53,17 @@ const PostApp = () => {
   // }, [dispatch, checkAuth, isLogin])
 
   if (checkAuth) return <h1 className='absolute bottom-0 right-1 text-info'>Waiting...</h1>
+  
 
   return (
     <BrowserRouter>
       <SideBar />
       <Routes>
+     
+        <Route path='/' element={<Welcome />} />
         <Route path='/auth' element={<Login />} />
-        <Route path='/' element={<Login />} />
+        <Route path='/login' element={<Login isLogin={isLogin} />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/welcome' element={<Welcome />} />
         <Route element={<PrivateRoutes auth={isLogin} />}>
           <Route path='home' element={<Home />} />
           <Route path='post' element={<Post />} />
