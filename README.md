@@ -6,6 +6,9 @@
 - `npm install` 😎 it'll install all dependencies to run the project
 - `npm run dev` 👉 to start development server or
 - `npm run build` 👉 to compile the project and `npm run preview` 👉 to see the production server working
+- Trouble issues: error with AnimXYZ -> install it with the flag --legacy-peer-deps
+  - `npm i --legacy-peer-deps @animxyz/core `
+  - `npm i --legacy-peer-deps @animxyz/react`
 
 ## Tecnological stack
 
@@ -30,9 +33,8 @@
 - validator.js is a JavaScript library that validates the structure of JavaScript objects.
 
 - [Animxyz](https://animxyz.com/) AnimXYZ is an animation library that simplifies adding CSS animations to a website or web application. AnimXYZ animations all compile to regular CSS behind the scenes, meaning they generally behave the same way CSS animations do. Once the page loads, the elements trigger automatically, run for the specified number of iterations, and then return to their original state.
-    - [Article blog](https://blog.logrocket.com/animate-react-app-animxyz/)
-    - ``npm install @animxyz/core``
-
-
+  - [Article blog](https://blog.logrocket.com/animate-react-app-animxyz/)
+  - `npm install @animxyz/core`
+- [react-toastify](https://www.npmjs.com/package/react-toastify) is a React component library that provides a simple way to display toast messages.`npm install --save --force react-toastify`
 
 - Backend with [Firebase](https://console.firebase.google.com/)
