@@ -37,4 +37,7 @@
   - `npm install @animxyz/core`
 - [react-toastify](https://www.npmjs.com/package/react-toastify) is a React component library that provides a simple way to display toast messages.`npm install --save --force react-toastify`
 
+- [React icons](https://react-icons.github.io/react-icons)
+
+
 - Backend with [Firebase](https://console.firebase.google.com/)
