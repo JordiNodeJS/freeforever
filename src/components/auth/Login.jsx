@@ -5,11 +5,16 @@ import { useForm } from '../../hooks/useForm'
 import { startLoginEmailPassword } from '../../actions/auth'
 
 const Login = ({ isLogin }) => {
+  // const [formValues, handleInputChange] = useForm({
+  //   email: 'virgie22g_c670s@yefx.info',
+  //   password: '123456',
+  // })
   const [formValues, handleInputChange] = useForm({
-    email: 'virgie22g_c670s@yefx.info',
-    password: '123456',
+    email: '',
+    password: '',
   })
 
+  
   const dispatch = useDispatch()
   const { loading } = useSelector(state => state.msg)
   const { auth } = useSelector(state => state.auth)
@@ -24,7 +29,7 @@ const Login = ({ isLogin }) => {
     dispatch(startGoogleLogin()) // Calls the thunk action creator, and passes the thunk function to dispatch
   }
 
-  if (isLogin) return <Navigate to='/home' />
+  if (isLogin ) return <Navigate to='/home' />
 
   return (
     <div data-theme='' className='hero min-h-screen bg-base-200'>
