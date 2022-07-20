@@ -12,7 +12,7 @@ const SideBar = () => {
   return (
     <div className='bg-base-200'>
       <div className=''>
-        <div className='btm-nav fixed top-0 flex justify-between items-center'>
+        <div className='btm-nav fixed top-0 flex justify-between items-center h-14'>
           <button>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -58,7 +58,8 @@ const SideBar = () => {
               />
             </svg>
           </button>
-          <AiOutlineLogout  onClick={handleLogout} type='button' className='flex-1 min-w-fit h-5 w-5 mr-2'>
+          <AiOutlineLogout  onClick={handleLogout} type='button'
+            className='flex-1 min-w-fit h-5 w-5 mr-2'>
             Log out
           </AiOutlineLogout>
         </div>

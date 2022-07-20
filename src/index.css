@@ -13,6 +13,7 @@
   .mycontainer {
     @apply max-w-md w-auto my-6;
   }
+
   hr {
     @apply block border-[#771fce] my-4;
   }
