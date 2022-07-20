@@ -9,7 +9,7 @@ import {
   updateProfile,
   signInWithPopup,
   GoogleAuthProvider,
-  signOut 
+  signOut,
 } from 'firebase/auth'
 
 export const startLoginEmailPassword = (email, password) => {
@@ -19,7 +19,7 @@ export const startLoginEmailPassword = (email, password) => {
     const auth = getAuth()
     signInWithEmailAndPassword(auth, email, password).then(userCredntials => {
       const user = userCredntials.user
-      dispatch(loginGoogleAccount(user.uid, user.displayName))
+      dispatch(loginEmailAndPassword(user.uid, user.displayName))
       dispatch(finishLoading())
     })
 
@@ -71,33 +71,33 @@ export const startRegisterEmailPasswordName = (email, password, name) => {
   }
 }
 
-export const startGoogleLogin = () => dispatch => {
-  const googleAuthProvider = new GoogleAuthProvider()
-  const auth = getAuth()
-  signInWithPopup(auth, googleAuthProvider)
-    .then(({user}) => {
-      console.log(user)
-      dispatch(loginGoogleAccount(user.uid, user.displayName, user.photoURL))
-    })
-    .catch(error => {
-      // Handle Errors here.
-
-      console.log('error ->', error)
-      toast.error( `🦄 ${error.code} ${error.message}`  )
-
-    })
+export const startGoogleLogin = () => async dispatch => {
+  try {
+    const googleAuthProvider = new GoogleAuthProvider()
+    const auth = getAuth()
+    const result = await signInWithPopup(auth, googleAuthProvider)
+    const credential = GoogleAuthProvider.credentialFromResult(result)
+    const token = credential.accessToken
+    const user = result.user
+    dispatch(loginGoogleAccount(user.uid, user.displayName, user.photoURL))
+    dispatch(finishLoading())
+  } catch (err) {
+    console.log('error ->', error)
+    const credential = GoogleAuthProvider.credentialFromError(error)
+    toast.error(`🦄 ${error.code} ${error.message} ${credential}`)
+  }
 }
 // export const startGoogleLogin = () => async dispatch => {
 //   const { user } = await firebase.auth().signInWithPopup(googleAuthProvider)
 //   dispatch(login(user.uid, user.displayName))
 // }
 
-export const loginGoogleAccount = (uid, displayName, photoURL ) => ({
+export const loginGoogleAccount = (uid, displayName, photoURL) => ({
   type: types.loginGoogleAccount,
   payload: {
     uid,
     displayName,
-    photoURL 
+    photoURL,
   },
 })
 
@@ -105,11 +105,9 @@ export const loginEmailAndPassword = (uid, displayName) => ({
   type: types.loginEmailAndPassword,
   payload: {
     uid,
-    displayName
+    displayName,
   },
 })
-
-
 
 export const logout = () => ({
   type: types.logout,
@@ -119,13 +117,12 @@ export const startLogout = () => {
   return dispatch => {
     const auth = getAuth()
     signOut(auth)
-    .then(() => {
-      dispatch(logout())
-    }
-    ).catch(err => {
-      toast.error('🦄 ' + err.message)
-    }
-    )
+      .then(() => {
+        dispatch(logout())
+      })
+      .catch(err => {
+        toast.error('🦄 ' + err.message)
+      })
   }
 }
 // export const startLogout = () => {
