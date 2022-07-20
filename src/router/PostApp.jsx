@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import { app as appfirebase } from '../firebase.config'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
-import { login } from '../actions/auth'
+import { loginGoogleAccount } from '../actions/auth'
 import SideBar from '../components/auth/SideBar'
 import PrivateRoutes from './PrivateRouters'
 import Home from '../components/post/Home'
@@ -26,7 +26,7 @@ const PostApp = () => {
     onAuthStateChanged(auth, user => {
       if (user?.uid) {
         console.log('user logged in')
-        dispatch(login(user.uid, user.displayName))
+        dispatch(loginGoogleAccount(user.uid, user.displayName, user.photoURL))
         setIsLogin(true)
        
         

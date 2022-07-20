@@ -32,7 +32,7 @@ const Login = ({ isLogin }) => {
   if (isLogin ) return <Navigate to='/home' />
 
   return (
-    <div data-theme='' className='min-h-screen bg-base-200 pt-14'>
+    <div data-theme='' className='hero min-h-screen bg-base-200 pt-14'>
       <div className='md:hero-content  flex-col lg:flex-row-reverse'>
         <div className='text-center lg:text-left'>
           <h1 className='text-5xl font-bold'>Login</h1>

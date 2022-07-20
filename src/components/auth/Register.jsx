@@ -16,7 +16,7 @@ const contextClass = {
   dark: 'bg-white-600 font-gray-300',
 }
 
-// className=''
+
 
 const Register = () => {
   const dispatch = useDispatch()

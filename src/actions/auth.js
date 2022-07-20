@@ -19,7 +19,7 @@ export const startLoginEmailPassword = (email, password) => {
     const auth = getAuth()
     signInWithEmailAndPassword(auth, email, password).then(userCredntials => {
       const user = userCredntials.user
-      dispatch(login(user.uid, user.displayName))
+      dispatch(loginGoogleAccount(user.uid, user.displayName))
       dispatch(finishLoading())
     })
 
@@ -45,7 +45,7 @@ export const startRegisterEmailPasswordName = (email, password, name) => {
       .then(userCredntials => {
         const user = userCredntials.user
         updateProfile(user, { displayName: name })
-        dispatch(login(user.uid, user.displayName))
+        dispatch(loginEmailAndPassword(user.uid, user.displayName))
       })
       .catch(err => {
         dispatch(setError(err.message))
@@ -77,7 +77,7 @@ export const startGoogleLogin = () => dispatch => {
   signInWithPopup(auth, googleAuthProvider)
     .then(({user}) => {
       console.log(user)
-      dispatch(login(user.uid, user.displayName))
+      dispatch(loginGoogleAccount(user.uid, user.displayName, user.photoURL))
     })
     .catch(error => {
       // Handle Errors here.
@@ -92,13 +92,24 @@ export const startGoogleLogin = () => dispatch => {
 //   dispatch(login(user.uid, user.displayName))
 // }
 
-export const login = (uid, displayName) => ({
-  type: types.login,
+export const loginGoogleAccount = (uid, displayName, photoURL ) => ({
+  type: types.loginGoogleAccount,
   payload: {
     uid,
     displayName,
+    photoURL 
   },
 })
+
+export const loginEmailAndPassword = (uid, displayName) => ({
+  type: types.loginEmailAndPassword,
+  payload: {
+    uid,
+    displayName
+  },
+})
+
+
 
 export const logout = () => ({
   type: types.logout,
