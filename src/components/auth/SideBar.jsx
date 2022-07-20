@@ -1,9 +1,10 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { startLogout } from '../../actions/auth'
 import { AiOutlineLogout } from 'react-icons/ai'
 
 const SideBar = () => {
   const dispatch = useDispatch()
+  const { name, photoURL } = useSelector(state => state.auth)
 
   const handleLogout = () => {
     dispatch(startLogout())
@@ -11,8 +12,8 @@ const SideBar = () => {
 
   return (
     <div className='bg-base-200'>
-      <div className=''>
-        <div className='btm-nav fixed top-0 flex justify-between items-center'>
+      <div>
+        <div className='btm-nav fixed top-0 flex justify-between items-center h-14'>
           <button>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -43,7 +44,11 @@ const SideBar = () => {
               />
             </svg>
           </button>
-          <button>
+          <div className='avatar flex-row items-center'>
+            <div className='w-8 rounded-full'>{ photoURL && <img  src={photoURL} />}</div>
+            <div className='mt-2 ml-2 font-thin'>{name}</div>
+          </div>
+          {/* <button>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               className='h-5 w-5'
@@ -57,8 +62,11 @@ const SideBar = () => {
                 d='M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z'
               />
             </svg>
-          </button>
-          <AiOutlineLogout  onClick={handleLogout} type='button' className='flex-1 min-w-fit h-5 w-5 mr-2'>
+          </button> */}
+          <AiOutlineLogout
+            onClick={handleLogout}
+            type='button'
+            className='flex-1 min-w-fit h-5 w-5 mr-2'>
             Log out
           </AiOutlineLogout>
         </div>
