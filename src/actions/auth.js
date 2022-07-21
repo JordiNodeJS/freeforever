@@ -1,4 +1,3 @@
-// import { firebase, googleAuthProvider, updateProfile } from '../firebase.config'
 import { types } from '../types'
 import { startLoading, finishLoading, setError } from './ui'
 import { toast } from 'react-toastify'
@@ -12,12 +11,10 @@ import {
   signOut,
 } from 'firebase/auth'
 import { app } from '../firebase.config'
-
 const auth = getAuth(app)
 const googleAuthProvider = new GoogleAuthProvider()
 
 export const startGoogleLogin = () => dispatch => {
-
   signInWithPopup(auth, googleAuthProvider)
     .then(result => {
       console.log(result.user)
@@ -44,10 +41,8 @@ export const startGoogleLogin = () => dispatch => {
 // }
 
 export const startLoginEmailPassword = (email, password) => {
-  
   return dispatch => {
     dispatch(startLoading())
-    const auth = getAuth(app)
 
     signInWithEmailAndPassword(auth, email, password).then(userCredntials => {
       const user = userCredntials.user
@@ -68,7 +63,6 @@ export const startLoginEmailPassword = (email, password) => {
     //     dispatch(finishLoading())
     //   })
   }
-  
 }
 
 export const startRegisterEmailPasswordName = (email, password, name) => {
@@ -76,10 +70,12 @@ export const startRegisterEmailPasswordName = (email, password, name) => {
     dispatch(startLoading())
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then(userCredntials => {
-        const user = userCredntials.user
-        updateProfile(user, { displayName: name })
+      .then(async userCredentials => {
+        const user = userCredentials.user
+        await updateProfile(user, { displayName: name })
+        console.log(user.displayName)
         dispatch(loginEmailAndPassword(user.uid, user.displayName))
+        dispatch(finishLoading())
       })
       .catch(err => {
         dispatch(setError(err.message))
@@ -104,7 +100,6 @@ export const startRegisterEmailPasswordName = (email, password, name) => {
     //   })
   }
 }
-
 
 // export const startGoogleLogin = () => async dispatch => {
 //   const { user } = await firebase.auth().signInWithPopup(googleAuthProvider)
@@ -134,7 +129,7 @@ export const logout = () => ({
 
 export const startLogout = () => {
   return dispatch => {
-    const auth = getAuth()
+    // const auth = getAuth()
     signOut(auth)
       .then(() => {
         dispatch(logout())
