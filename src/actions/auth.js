@@ -40,65 +40,61 @@ export const startGoogleLogin = () => dispatch => {
 //   }
 // }
 
-export const startLoginEmailPassword = (email, password) => {
-  return dispatch => {
-    dispatch(startLoading())
+export const startLoginEmailPassword = (email, password) => dispatch => {
+  dispatch(startLoading())
 
-    signInWithEmailAndPassword(auth, email, password).then(userCredntials => {
-      const user = userCredntials.user
+  signInWithEmailAndPassword(auth, email, password).then(userCredntials => {
+    const user = userCredntials.user
+    dispatch(loginEmailAndPassword(user.uid, user.displayName))
+    dispatch(finishLoading())
+  })
+
+  // firebase
+  //   .auth()
+  //   .signInWithEmailAndPassword(email, password)
+  //   .then(({ user }) => {
+  //     dispatch(login(user.uid, user.displayName))
+
+  //     dispatch(finishLoading())
+  //   })
+  //   .catch(err => {
+
+  //     dispatch(finishLoading())
+  //   })
+}
+
+export const startRegisterEmailPasswordName = (email, password, name) => dispatch => {
+  dispatch(startLoading())
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(async userCredentials => {
+      const user = userCredentials.user
+      await updateProfile(user, { displayName: name })
+      console.log(user.displayName)
       dispatch(loginEmailAndPassword(user.uid, user.displayName))
       dispatch(finishLoading())
     })
+    .catch(err => {
+      dispatch(setError(err.message))
+      toast.error('🦄 ' + err.message)
+    })
 
-    // firebase
-    //   .auth()
-    //   .signInWithEmailAndPassword(email, password)
-    //   .then(({ user }) => {
-    //     dispatch(login(user.uid, user.displayName))
-
-    //     dispatch(finishLoading())
-    //   })
-    //   .catch(err => {
-
-    //     dispatch(finishLoading())
-    //   })
-  }
-}
-
-export const startRegisterEmailPasswordName = (email, password, name) => {
-  return dispatch => {
-    dispatch(startLoading())
-
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(async userCredentials => {
-        const user = userCredentials.user
-        await updateProfile(user, { displayName: name })
-        console.log(user.displayName)
-        dispatch(loginEmailAndPassword(user.uid, user.displayName))
-        dispatch(finishLoading())
-      })
-      .catch(err => {
-        dispatch(setError(err.message))
-        toast.error('🦄 ' + err.message)
-      })
-
-    // firebase
-    //   .auth()
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then(async ({ user }) => {
-    //     await updateProfile(user, {
-    //       displayName: name,
-    //     })
-    //     dispatch(login(user.uid, user.displayName))
-    //     console.log(user)
-    //   })
-    //   .catch(err => {
-    //     // alert(err.message)
-    //     toast.error('🦄 ' + err.message)
-    //     console.log('🦄', err.message)
-    //     dispatch(setError(err.message))
-    //   })
-  }
+  // firebase
+  //   .auth()
+  //   .createUserWithEmailAndPassword(email, password)
+  //   .then(async ({ user }) => {
+  //     await updateProfile(user, {
+  //       displayName: name,
+  //     })
+  //     dispatch(login(user.uid, user.displayName))
+  //     console.log(user)
+  //   })
+  //   .catch(err => {
+  //     // alert(err.message)
+  //     toast.error('🦄 ' + err.message)
+  //     console.log('🦄', err.message)
+  //     dispatch(setError(err.message))
+  //   })
 }
 
 // export const startGoogleLogin = () => async dispatch => {
@@ -127,18 +123,16 @@ export const logout = () => ({
   type: types.logout,
 })
 
-export const startLogout = () => {
-  return dispatch => {
-    // const auth = getAuth()
-    signOut(auth)
-      .then(() => {
-        dispatch(logout())
-      })
-      .catch(err => {
-        toast.error('🦄 ' + err.message)
-      })
-  }
+export const startLogout = () => dispatch => {
+  signOut(auth)
+    .then(() => {
+      dispatch(logout())
+    })
+    .catch(err => {
+      toast.error('🦄 ' + err.message)
+    })
 }
+
 // export const startLogout = () => {
 //   return dispatch => {
 //     firebase
