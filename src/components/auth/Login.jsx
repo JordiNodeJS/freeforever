@@ -5,10 +5,7 @@ import { useForm } from '../../hooks/useForm'
 import { startLoginEmailPassword } from '../../actions/auth'
 
 const Login = ({ isLogin }) => {
-  // const [formValues, handleInputChange] = useForm({
-  //   email: 'virgie22g_c670s@yefx.info',
-  //   password: '123456',
-  // })
+
   const [formValues, handleInputChange] = useForm({
     email: '',
     password: '',
