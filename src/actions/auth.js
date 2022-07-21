@@ -71,7 +71,7 @@ export const startRegisterEmailPasswordName = (email, password, name) => dispatc
       const user = userCredentials.user
       await updateProfile(user, { displayName: name })
       console.log(user.displayName)
-      dispatch(loginEmailAndPassword(user.uid, user.displayName))
+      dispatch(registerEmailAndPassword(user.uid, user.displayName))
       dispatch(finishLoading())
     })
     .catch(err => {
@@ -118,6 +118,15 @@ export const loginEmailAndPassword = (uid, displayName) => ({
     displayName,
   },
 })
+export const registerEmailAndPassword = (uid, displayName) => ({
+  type: types.registerEmailAndPassword,
+  payload: {
+    uid,
+    displayName,
+  },
+})
+
+
 
 export const logout = () => ({
   type: types.logout,

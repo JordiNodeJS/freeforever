@@ -7,7 +7,7 @@
     } is the initial state of the reducer when you are authenticated
 */
 import { types } from '../types'
-const { loginGoogleAccount, loginEmailAndPassword, logout } = types
+const { loginGoogleAccount, loginEmailAndPassword, registerEmailAndPassword, logout } = types
 
 export const authReducer = (state = {}, action) => {
   switch (action.type) {
@@ -18,6 +18,11 @@ export const authReducer = (state = {}, action) => {
         photoURL: action.payload.photoURL
       }
     case loginEmailAndPassword:
+      return {
+        uid: action.payload.uid,
+        name: action.payload.displayName,
+      }
+    case registerEmailAndPassword:
       return {
         uid: action.payload.uid,
         name: action.payload.displayName,
