@@ -3,8 +3,8 @@
 // import 'firebase/compat/auth'
 // import { updateProfile } from 'firebase/auth'
 import { initializeApp } from 'firebase/app';
-import { getFirestore} from 'firebase/firestore/lite';
-
+import { getFirestore} from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN,
@@ -15,6 +15,9 @@ const firebaseConfig = {
 }
 
 export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app)
+export const googleAuthProvider = new GoogleAuthProvider()
+
 export const db = getFirestore(app);
 
 

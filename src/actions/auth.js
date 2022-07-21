@@ -11,12 +11,39 @@ import {
   GoogleAuthProvider,
   signOut,
 } from 'firebase/auth'
+import { app } from '../firebase.config'
+
+export const startGoogleLogin = () => async dispatch => {
+  const auth = getAuth(app)
+  const googleAuthProvider = new GoogleAuthProvider()
+  signInWithPopup(auth, googleAuthProvider)
+    .then(result => {
+      return result.user
+    })
+    .catch(error => {
+      console.error(error)
+    })
+}
+// export const startGoogleLogin = () => async dispatch => {
+//   try {
+//     dispatch(startLoading())
+//     const result = await signInWithPopup(auth, googleAuthProvider)
+//     const user = result.user
+//     console.log(user)
+//     dispatch(loginGoogleAccount(user.uid, user.displayName, user.photoURL))
+//     dispatch(finishLoading())
+//   } catch (error) {
+//     console.log('error ->', error)
+//     const credential = GoogleAuthProvider.credentialFromError(error)
+//     toast.error(`🦄 ${error.code} ${error.message} ${credential}`)
+//   }
+// }
 
 export const startLoginEmailPassword = (email, password) => {
   return dispatch => {
     dispatch(startLoading())
 
-    const auth = getAuth()
+   
     signInWithEmailAndPassword(auth, email, password).then(userCredntials => {
       const user = userCredntials.user
       dispatch(loginEmailAndPassword(user.uid, user.displayName))
@@ -40,7 +67,8 @@ export const startLoginEmailPassword = (email, password) => {
 
 export const startRegisterEmailPasswordName = (email, password, name) => {
   return dispatch => {
-    const auth = getAuth()
+    dispatch(startLoading())
+
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredntials => {
         const user = userCredntials.user
@@ -71,22 +99,7 @@ export const startRegisterEmailPasswordName = (email, password, name) => {
   }
 }
 
-export const startGoogleLogin = () => async dispatch => {
-  try {
-    const googleAuthProvider = new GoogleAuthProvider()
-    const auth = getAuth()
-    const result = await signInWithPopup(auth, googleAuthProvider)
-    const credential = GoogleAuthProvider.credentialFromResult(result)
-    const token = credential.accessToken
-    const user = result.user
-    dispatch(loginGoogleAccount(user.uid, user.displayName, user.photoURL))
-    dispatch(finishLoading())
-  } catch (err) {
-    console.log('error ->', error)
-    const credential = GoogleAuthProvider.credentialFromError(error)
-    toast.error(`🦄 ${error.code} ${error.message} ${credential}`)
-  }
-}
+
 // export const startGoogleLogin = () => async dispatch => {
 //   const { user } = await firebase.auth().signInWithPopup(googleAuthProvider)
 //   dispatch(login(user.uid, user.displayName))
