@@ -13,12 +13,16 @@ import {
 } from 'firebase/auth'
 import { app } from '../firebase.config'
 
-export const startGoogleLogin = () => async dispatch => {
-  const auth = getAuth(app)
-  const googleAuthProvider = new GoogleAuthProvider()
+const auth = getAuth(app)
+const googleAuthProvider = new GoogleAuthProvider()
+
+export const startGoogleLogin = () => dispatch => {
+
   signInWithPopup(auth, googleAuthProvider)
     .then(result => {
-      return result.user
+      console.log(result.user)
+      dispatch(loginGoogleAccount(result.user.uid, result.user.displayName, result.user.photoURL))
+      dispatch(finishLoading())
     })
     .catch(error => {
       console.error(error)
@@ -40,10 +44,11 @@ export const startGoogleLogin = () => async dispatch => {
 // }
 
 export const startLoginEmailPassword = (email, password) => {
+  
   return dispatch => {
     dispatch(startLoading())
+    const auth = getAuth(app)
 
-   
     signInWithEmailAndPassword(auth, email, password).then(userCredntials => {
       const user = userCredntials.user
       dispatch(loginEmailAndPassword(user.uid, user.displayName))
@@ -63,6 +68,7 @@ export const startLoginEmailPassword = (email, password) => {
     //     dispatch(finishLoading())
     //   })
   }
+  
 }
 
 export const startRegisterEmailPasswordName = (email, password, name) => {
