@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { startLogout } from '../../actions/auth'
+import { startLogout } from '../actions/auth'
 import { AiOutlineLogout } from 'react-icons/ai'
 
 const SideBar = () => {
