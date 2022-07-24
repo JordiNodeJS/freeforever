@@ -1,13 +1,10 @@
 import { useForm } from '../../hooks/useForm'
 import validator from 'validator'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeError, setError } from '../../actions/ui'
-import { startRegisterEmailPasswordName } from '../../actions/auth'
+import { startRegisterEmailPasswordName, removeError, setError } from '../../actions'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { contextClass } from '../../utilities/style'
-
-
 
 const Register = () => {
   const dispatch = useDispatch()
