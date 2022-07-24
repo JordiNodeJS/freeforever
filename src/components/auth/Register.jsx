@@ -2,19 +2,10 @@ import { useForm } from '../../hooks/useForm'
 import validator from 'validator'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeError, setError } from '../../actions/ui'
-import './Register.css'
 import { startRegisterEmailPasswordName } from '../../actions/auth'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
-const contextClass = {
-  success: 'bg-blue-600',
-  error: 'bg-red-600',
-  info: 'bg-gray-600',
-  warning: 'bg-orange-400',
-  default: 'bg-indigo-600',
-  dark: 'bg-white-600 font-gray-300',
-}
+import { contextClass } from '../../utilities/style'
 
 
 
@@ -24,19 +15,21 @@ const Register = () => {
   const { msgError } = useSelector(state => state.msg)
 
   const [formValues, handleInputChange] = useForm({
-    name: 'Paco',
+    name: 'Joe',
     email: 'virgie22g_c670s@yefx.info',
     password: '123456',
     password2: '123456',
   })
 
   const { name, email, password, password2 } = formValues
+
   const handleSubmit = e => {
     e.preventDefault()
     if (isFormValid()) {
       dispatch(startRegisterEmailPasswordName(email, password, name))
     }
   }
+
   const isFormValid = () => {
     if (name.trim().length === 0) {
       dispatch(setError('El nombre es obligatorio'))

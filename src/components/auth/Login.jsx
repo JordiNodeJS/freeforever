@@ -3,6 +3,10 @@ import { Link, Navigate } from 'react-router-dom'
 import { startGoogleLogin } from '../../actions/auth'
 import { useForm } from '../../hooks/useForm'
 import { startLoginEmailPassword } from '../../actions/auth'
+import { ToastContainer } from 'react-toastify'
+
+import { contextClass } from '../../utilities/style'
+
 
 const Login = ({ isLogin }) => {
 
@@ -14,7 +18,6 @@ const Login = ({ isLogin }) => {
   
   const dispatch = useDispatch()
   const { loading } = useSelector(state => state.msg)
-  const { auth } = useSelector(state => state.auth)
 
   const { email, password } = formValues
 
@@ -31,7 +34,7 @@ const Login = ({ isLogin }) => {
   return (
     <div data-theme='' className='hero min-h-screen bg-base-200 pt-14'>
       <div className='md:hero-content  flex-col lg:flex-row-reverse'>
-        <div className='text-center lg:text-left'>
+        <div className='px-20 text-center lg:text-left'>
           <h1 className='text-5xl font-bold'>Login</h1>
           <p className='py-6'>Welcome to the login page.</p>
         </div>
@@ -76,7 +79,9 @@ const Login = ({ isLogin }) => {
                 Create account
               </Link>
             </div>
-            <div className='mt-10 flex justify-center'>
+          </div>
+        </form>
+        <div className='mt-10 flex justify-center'>
               <button
                 onClick={handleGoogleLogin}
                 className='btn btn-ghost  group h-12 px-6 border-2  rounded-full transition duration-300'>
@@ -92,9 +97,17 @@ const Login = ({ isLogin }) => {
                 </div>
               </button>
             </div>
-          </div>
-        </form>
       </div>
+      
+      <ToastContainer
+        toastClassName={({ type }) =>
+          contextClass[type || 'default'] +
+          ' relative flex p-1 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer'
+        }
+        bodyClassName={() => 'text-sm font-white font-med block p-3'}
+        position='top-center'
+        autoClose={3000}
+      />
     </div>
   )
 }
