@@ -3,6 +3,10 @@ import { Link, Navigate } from 'react-router-dom'
 import { startGoogleLogin } from '../../actions/auth'
 import { useForm } from '../../hooks/useForm'
 import { startLoginEmailPassword } from '../../actions/auth'
+import { ToastContainer } from 'react-toastify'
+
+import { contextClass } from '../../utilities/style'
+
 
 const Login = ({ isLogin }) => {
 
@@ -94,6 +98,16 @@ const Login = ({ isLogin }) => {
               </button>
             </div>
       </div>
+      
+      <ToastContainer
+        toastClassName={({ type }) =>
+          contextClass[type || 'default'] +
+          ' relative flex p-1 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer'
+        }
+        bodyClassName={() => 'text-sm font-white font-med block p-3'}
+        position='top-center'
+        autoClose={3000}
+      />
     </div>
   )
 }

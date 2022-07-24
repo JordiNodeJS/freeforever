@@ -2,17 +2,14 @@ import { types } from '../types'
 import { startLoading, finishLoading, setError } from './ui'
 import { toast } from 'react-toastify'
 import {
-  getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
   signInWithPopup,
-  GoogleAuthProvider,
   signOut,
 } from 'firebase/auth'
-import { app } from '../firebase.config'
-const auth = getAuth(app)
-const googleAuthProvider = new GoogleAuthProvider()
+import { auth, googleAuthProvider } from '../firebase.config'
+
 
 export const startGoogleLogin = () => dispatch => {
   signInWithPopup(auth, googleAuthProvider)
@@ -22,7 +19,9 @@ export const startGoogleLogin = () => dispatch => {
       dispatch(finishLoading())
     })
     .catch(error => {
-      console.error(error)
+      console.warn(error)
+      toast.error(error.message)
+      dispatch(finishLoading())
     })
 }
 // export const startGoogleLogin = () => async dispatch => {
@@ -47,7 +46,14 @@ export const startLoginEmailPassword = (email, password) => dispatch => {
     const user = userCredntials.user
     dispatch(loginEmailAndPassword(user.uid, user.displayName))
     dispatch(finishLoading())
-  })
+  }).catch(error => {
+    console.warn(error)
+    dispatch(setError(error.code))
+    toast.error(error.message)
+    dispatch(finishLoading())
+  }
+  )
+
 
   // firebase
   //   .auth()
@@ -76,7 +82,8 @@ export const startRegisterEmailPasswordName = (email, password, name) => dispatc
     })
     .catch(err => {
       dispatch(setError(err.message))
-      toast.error('🦄 ' + err.message)
+      toast.warning(err.message)
+      dispatch(finishLoading())
     })
 
   // firebase
