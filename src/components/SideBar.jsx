@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { startLogout } from '../actions/auth'
-import { AiOutlineLogout } from 'react-icons/ai'
+import { startLogout, startNewPost } from '../actions'
+import { AiOutlineLogout, AiOutlinePlusCircle } from 'react-icons/ai'
 
 const SideBar = () => {
   const dispatch = useDispatch()
@@ -9,6 +9,12 @@ const SideBar = () => {
   const handleLogout = () => {
     dispatch(startLogout())
   }
+
+  const handleAddEntry = () => {
+    console.log('add entry')
+    dispatch(startNewPost())
+  }
+
 
   return (
     <div className='bg-base-200'>
@@ -29,20 +35,8 @@ const SideBar = () => {
               />
             </svg>
           </button>
-          <button className='active'>
-            <svg
-              xmlns='http://www.w3.org/2000/svg'
-              className='h-5 w-5'
-              fill='none'
-              viewBox='0 0 24 24'
-              stroke='currentColor'>
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-              />
-            </svg>
+          <button onClick={handleAddEntry} className='active text-xl'>
+            <AiOutlinePlusCircle />
           </button>
           <div className='avatar flex-row items-center'>
             <div className='w-8 rounded-full'>{ photoURL && <img  src={photoURL} />}</div>
