@@ -15,7 +15,7 @@ export const startNewPost = () => async (dispatch, getState) => {
     body: '',
     date: new Date().getTime(),
   }
-  const userCollectionRef = collection(db, `${name}_${uid}/record/posts`)
+  const userCollectionRef = collection(db, `${name.split(' ').join('')}_${uid}/record/posts`)
     const newPostRef = await addDoc(userCollectionRef, {
         ...newPost,
         uid,
