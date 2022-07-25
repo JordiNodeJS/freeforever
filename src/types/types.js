@@ -9,4 +9,13 @@ export const types = {
 
   startLoading: 'MSG_START_LOADING',
   finishLoading: 'MSG_FINISH_LOADING',
+
+  postsAddNew: 'POSTS_ADD_NEW',
+  postsActive: 'POSTS_ACTIVE',
+  postsFetch: 'POSTS_FETCH',
+  postsUpdate: 'POSTS_UPDATE',
+  postsDelete: 'POSTS_DELETE',
+  postsUrl: 'POSTS_URL',
+  postsLogoutClean: 'POSTS_LOGOUT_CLEAN',
+
 }

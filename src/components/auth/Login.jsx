@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Navigate } from 'react-router-dom'
-import { startGoogleLogin } from '../../actions/auth'
+import { startGoogleLogin } from '../../actions'
 import { useForm } from '../../hooks/useForm'
 import { startLoginEmailPassword } from '../../actions/auth'
 import { ToastContainer } from 'react-toastify'
