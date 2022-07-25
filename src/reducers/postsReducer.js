@@ -14,6 +14,11 @@ import { types } from '../types'
 
 export const postsReducer = (state = { posts: [], activePost: null }, action) => {
   switch (action.type) {
+    case types.postsActive:
+      return {
+        ...state,
+        activePost: {...action.payload },
+      }
     case types.fetchPosts:
       return {
         ...state,
@@ -33,11 +38,6 @@ export const postsReducer = (state = { posts: [], activePost: null }, action) =>
       return {
         ...state,
         posts: state.posts.filter(post => post.id !== action.payload),
-      }
-    case types.setActivePost:
-      return {
-        ...state,
-        activePost: action.payload,
       }
     default:
       return state

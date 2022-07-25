@@ -11,17 +11,16 @@ export const startNewPost = () => async (dispatch, getState) => {
   console.log(name, uid)
 
   const newPost = {
-    title: '',
-    body: '',
+    id: uid,
+    author: name,
+    title: 'My new post',
+    body: 'Post body',
     date: new Date().getTime(),
   }
   const userCollectionRef = collection(db, `${name.split(' ').join('')}_${uid}/record/posts`)
-    const newPostRef = await addDoc(userCollectionRef, {
-        ...newPost,
-        uid,
-        name,
-        })
+    const newPostRef = await addDoc(userCollectionRef, { newPost})
     console.log(newPostRef)
+    dispatch(activePost(newPostRef.id, newPost))
 
 //   const docRef = await db.collection(`${name}${uid}/record/posts`).add({
 //     ...newPost,
@@ -50,4 +49,14 @@ export const startNewPost = () => async (dispatch, getState) => {
   //   if (auth.uid) {
   //     dispatch(setNewPost(true))
   //   }
+}
+
+const activePost = (id, post) => {
+  return {
+    type: types.postsActive,
+    payload: {
+      id,
+      ...post,
+    },
+  }
 }
