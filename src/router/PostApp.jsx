@@ -12,6 +12,7 @@ import SideBar from '../components/SideBar'
 import PrivateRoutes from './PrivateRouters'
 import Home from '../components/post/Home'
 import Post from '../components/post/Post'
+import { startFetchPosts } from '../actions'
 
 const PostApp = () => {
   const [checkAuth, setCheckAuth] = useState(true)
@@ -22,17 +23,28 @@ const PostApp = () => {
   useEffect(() => {
 
     const auth = getAuth()
-    onAuthStateChanged(auth, user => {
+    onAuthStateChanged(auth, async user => {
       if (user?.uid && user?.photoURL) {
-        console.log('user logged in')
+        console.log('PostApp:loginGoogleAccount: user logged in')
+       
+        startFetchPosts(user.uid)
+
         dispatch(loginGoogleAccount(user.uid, user.displayName, user.photoURL))
         setIsLogin(true)
+
+
       } else if (user?.uid && !user?.photoURL) {
-        console.log('user logged in')
+        console.log('PostApp:loginEmailAndPassword:user logged in')
+
+        startFetchPosts(user.uid)
+
+
         dispatch(loginEmailAndPassword(user.uid, user.displayName, user.photoURL))
         setIsLogin(true)
+
       } else {
         console.log('user logged out')
+
         setIsLogin(false)
       }
       setCheckAuth(false)

@@ -19,10 +19,10 @@ export const postsReducer = (state = { posts: [], activePost: null }, action) =>
         ...state,
         activePost: {...action.payload },
       }
-    case types.fetchPosts:
+    case types.postsFetch:
       return {
         ...state,
-        posts: action.payload,
+        posts: [...action.payload],
       }
     case types.createPost:
       return {
