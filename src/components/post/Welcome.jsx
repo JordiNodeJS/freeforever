@@ -1,5 +1,5 @@
 const Welcome = () => {
-  return <div className="py-14">Welcome</div>
+  return <div>Welcome</div>
 }
 
 export default Welcome

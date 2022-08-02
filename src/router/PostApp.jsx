@@ -11,33 +11,34 @@ import { loginEmailAndPassword, loginGoogleAccount } from '../actions/auth'
 import SideBar from '../components/SideBar'
 import PrivateRoutes from './PrivateRouters'
 import Home from '../components/post/Home'
-import Post from '../components/post/Post'
+import EditPost from '../components/post/EditPost'
 import { startFetchPosts } from '../actions'
+import PostEntries from '../components/post/PostEntries'
 
 const PostApp = () => {
   const [checkAuth, setCheckAuth] = useState(true)
   const [isLogin, setIsLogin] = useState(false)
-
+  
   const dispatch = useDispatch()
-
+  
   useEffect(() => {
-
     const auth = getAuth()
+
     onAuthStateChanged(auth, async user => {
+
       if (user?.uid && user?.photoURL) {
         console.log('PostApp:loginGoogleAccount: user logged in')
-       
-       dispatch( startFetchPosts(user.uid))
+
+        dispatch(startFetchPosts(user.uid))
 
         dispatch(loginGoogleAccount(user.uid, user.displayName, user.photoURL))
         setIsLogin(true)
 
-
       } else if (user?.uid && !user?.photoURL) {
         console.log('PostApp:loginEmailAndPassword:user logged in')
 
-        dispatch( startFetchPosts(user.uid))
-        
+        dispatch(startFetchPosts(user.uid))
+
         dispatch(loginEmailAndPassword(user.uid, user.displayName, user.photoURL))
         setIsLogin(true)
 
@@ -48,36 +49,25 @@ const PostApp = () => {
       }
       setCheckAuth(false)
     })
-  }, [dispatch, checkAuth, isLogin])
-
-  // useEffect(() => {
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     if (user?.uid) {
-  //       console.log('user logged in')
-  //       dispatch(login(user.uid, user.displayName))
-  //       setIsLogin(true)
-  //     } else {
-  //       console.log('user logged out')
-  //       setIsLogin(false)
-  //     }
-  //     setCheckAuth(false)
-  //   })
-  // }, [dispatch, checkAuth, isLogin])
+  }, [])
 
   if (checkAuth) return <h1 className='absolute bottom-0 right-1 text-info'>Waiting...</h1>
 
   return (
     <BrowserRouter>
-      <SideBar />
+      <SideBar isLogin={isLogin} />
+      <div className='pt-14'></div>
+
       <Routes>
         <Route path='/' element={<Welcome />} />
+        <Route path='/postentries' element={<PostEntries />} />
         <Route path='/auth' element={<Login />} />
         <Route path='/login' element={<Login isLogin={isLogin} />} />
         <Route path='/register' element={<Register />} />
         <Route element={<PrivateRoutes auth={isLogin} />}>
           <Route path='home' element={<Home />} />
-          <Route path='post' element={<Post />} />
-          <Route path='post/:id' element={<Post />} />
+          <Route path='editpost' element={<EditPost />} />
+          <Route path='post/:id' element={<EditPost />} />
         </Route>
         <Route path='*' element={<NotFound />} />
       </Routes>

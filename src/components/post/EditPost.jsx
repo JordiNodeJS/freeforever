@@ -1,18 +1,18 @@
 import SideBar from '../SideBar'
-import PostView from '../posts/PostView'
+import CurrentPost from './CurrentPost'
 import { useSelector } from 'react-redux'
 
-const Post = () => {
+const EditPost = () => {
   const { activePost } = useSelector(state => state.posts)
-
+  const { author } = activePost?? 'No post selected'
   return (
     <div>
       <SideBar />
       <main>
-        { activePost && <PostView />}
+        { activePost && <CurrentPost />}
       </main>
     </div>
   )
 }
 
-export default Post
+export default EditPost
