@@ -16,7 +16,7 @@ export const startNewPost = () => async (dispatch, getState) => {
     author: name,
     title: 'My new post',
     body: 'Post body',
-    date: new Date(),
+    date: new Date().getTime(),
   }
   const userCollectionRef = collection(db, `${uid}/record/posts`) //${name.split(' ').join('')}_${uid}
   const newPostRef = await addDoc(userCollectionRef, newPost )
@@ -58,8 +58,8 @@ export const startNewPost = () => async (dispatch, getState) => {
 }
 
 export const startFetchPosts = uid => async dispatch => {
-  const notes = await loadPosts ( uid )
-  dispatch ( setPosts(notes) ) 
+  const notes = await loadPosts(uid)
+  dispatch(setPosts(notes))
 }
 
 
