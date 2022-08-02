@@ -38,7 +38,6 @@ const PostApp = () => {
 
         startFetchPosts(user.uid)
 
-
         dispatch(loginEmailAndPassword(user.uid, user.displayName, user.photoURL))
         setIsLogin(true)
 
