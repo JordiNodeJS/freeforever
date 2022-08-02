@@ -27,7 +27,7 @@ const PostApp = () => {
       if (user?.uid && user?.photoURL) {
         console.log('PostApp:loginGoogleAccount: user logged in')
        
-        startFetchPosts(user.uid)
+       dispatch( startFetchPosts(user.uid))
 
         dispatch(loginGoogleAccount(user.uid, user.displayName, user.photoURL))
         setIsLogin(true)
@@ -36,8 +36,8 @@ const PostApp = () => {
       } else if (user?.uid && !user?.photoURL) {
         console.log('PostApp:loginEmailAndPassword:user logged in')
 
-        startFetchPosts(user.uid)
-
+        dispatch( startFetchPosts(user.uid))
+        
         dispatch(loginEmailAndPassword(user.uid, user.displayName, user.photoURL))
         setIsLogin(true)
 
