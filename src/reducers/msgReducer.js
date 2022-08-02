@@ -17,7 +17,7 @@ export const msgReducer = (state = initialState, action) => {
             ...state,
             msgError: null,
         }
-    case types.startLoading:
+    // case types.startLoading:
       return {
         ...state,
         loading: true,

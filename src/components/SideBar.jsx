@@ -39,7 +39,9 @@ const SideBar = () => {
             <AiOutlinePlusCircle />
           </button>
           <div className='flex-row items-center flex-wrap'>
-            <div className='avatar w-8 rounded-full'>{ photoURL && <img  src={ photoURL } alt='foto perfil' />}</div>
+            {/* <div className='avatar w-8 rounded-full'>
+              { photoURL && <img  src={ photoURL } alt='🎞' />}
+              </div> */}
             
             <div className='ml-2 font-thin'>{name}</div>
           </div>
