@@ -149,6 +149,11 @@ export const startLogout = () => dispatch => {
     })
 }
 
+
+
+
+
+
 // export const startLogout = () => {
 //   return dispatch => {
 //     firebase

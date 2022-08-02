@@ -8,7 +8,9 @@ import { ToastContainer } from 'react-toastify'
 import { contextClass } from '../../utilities/style'
 
 
-const Login = ({ isLogin }) => {
+const Login = _ => {
+  const { loading, isLogin } = useSelector(state => state.msg)
+  
 
   const [formValues, handleInputChange] = useForm({
     email: '',
@@ -17,7 +19,6 @@ const Login = ({ isLogin }) => {
 
   
   const dispatch = useDispatch()
-  const { loading } = useSelector(state => state.msg)
 
   const { email, password } = formValues
 

@@ -3,6 +3,7 @@ export const types = {
   loginEmailAndPassword: 'AUTH_LOGIN_EMAIL_AND_PASSWORD',
   registerEmailAndPassword: 'AUTH_REGISTER_EMAIL_AND_PASSWORD',
   logout: 'AUTH_LOGOUT',
+  isLogin: 'AUTH_IS_LOGIN',
 
   uiSetError: 'MSG_SET_ERROR',
   uiRemoveError: 'MSG_REMOVE_ERROR',

@@ -7,17 +7,17 @@ import NotFound from '../components/NotFound'
 import { useEffect, useState } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useDispatch } from 'react-redux'
-import { loginEmailAndPassword, loginGoogleAccount } from '../actions/auth'
 import SideBar from '../components/SideBar'
 import PrivateRoutes from './PrivateRouters'
 import Home from '../components/post/Home'
 import EditPost from '../components/post/EditPost'
-import { startFetchPosts } from '../actions'
+import { loginEmailAndPassword, loginGoogleAccount } from '../actions'
+import { startFetchPosts, isLogin } from '../actions'
 import PostEntries from '../components/post/PostEntries'
 
 const PostApp = () => {
   const [checkAuth, setCheckAuth] = useState(true)
-  const [isLogin, setIsLogin] = useState(false)
+ 
   
   const dispatch = useDispatch()
   
@@ -32,7 +32,7 @@ const PostApp = () => {
         dispatch(startFetchPosts(user.uid))
 
         dispatch(loginGoogleAccount(user.uid, user.displayName, user.photoURL))
-        setIsLogin(true)
+        dispatch(isLogin(true))
 
       } else if (user?.uid && !user?.photoURL) {
         console.log('PostApp:loginEmailAndPassword:user logged in')
@@ -40,12 +40,11 @@ const PostApp = () => {
         dispatch(startFetchPosts(user.uid))
 
         dispatch(loginEmailAndPassword(user.uid, user.displayName, user.photoURL))
-        setIsLogin(true)
+        dispatch(isLogin(true))
 
       } else {
         console.log('user logged out')
-
-        setIsLogin(false)
+        dispatch(isLogin(false))
       }
       setCheckAuth(false)
     })
@@ -62,7 +61,7 @@ const PostApp = () => {
         <Route path='/' element={<Welcome />} />
         <Route path='/postentries' element={<PostEntries />} />
         <Route path='/auth' element={<Login />} />
-        <Route path='/login' element={<Login isLogin={isLogin} />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route element={<PrivateRoutes auth={isLogin} />}>
           <Route path='home' element={<Home />} />

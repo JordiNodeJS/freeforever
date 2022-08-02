@@ -1,7 +1,6 @@
 import { types } from '../types'
 import { db } from '../firebase.config'
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore'
-import { loadPosts } from '../helpers/loadPosts'
 
 
 export const startNewPost = () => async (dispatch, getState) => {
@@ -63,11 +62,30 @@ export const startFetchPosts = uid => async dispatch => {
 }
 
 
-export const setPosts = posts => ({
+const setPosts = posts => ({
   type: types.postsFetch,
   payload: posts,
 }
 )
+
+const loadPosts = async uid => {
+  const posts = []
+  const ref = collection(db, `${uid}/record/posts`)
+  const postSnapShot = await getDocs(ref)
+
+  postSnapShot.forEach(doc => {
+    posts.push({
+      id: doc.id,
+      ...doc.data(),
+    })
+  })
+
+
+
+  console.log('posts', ' => ', posts)
+  return posts
+}
+
 
 const activePost = (id, post) => ({
   type: types.postsActive,
