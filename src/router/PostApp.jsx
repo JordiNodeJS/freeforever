@@ -14,18 +14,17 @@ import EditPost from '../components/post/EditPost'
 import { loginEmailAndPassword, loginGoogleAccount } from '../actions'
 import { startFetchPosts, isLogin } from '../actions'
 import PostEntries from '../components/post/PostEntries'
+import Footer from '../components/post/Footer'
 
 const PostApp = () => {
   const [checkAuth, setCheckAuth] = useState(true)
- 
-  
+
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     const auth = getAuth()
 
     onAuthStateChanged(auth, async user => {
-
       if (user?.uid && user?.photoURL) {
         console.log('PostApp:loginGoogleAccount: user logged in')
 
@@ -33,7 +32,6 @@ const PostApp = () => {
 
         dispatch(loginGoogleAccount(user.uid, user.displayName, user.photoURL))
         dispatch(isLogin(true))
-
       } else if (user?.uid && !user?.photoURL) {
         console.log('PostApp:loginEmailAndPassword:user logged in')
 
@@ -41,7 +39,6 @@ const PostApp = () => {
 
         dispatch(loginEmailAndPassword(user.uid, user.displayName, user.photoURL))
         dispatch(isLogin(true))
-
       } else {
         console.log('user logged out')
         dispatch(isLogin(false))
@@ -55,21 +52,22 @@ const PostApp = () => {
   return (
     <BrowserRouter>
       <SideBar isLogin={isLogin} />
-      <div className='pt-14'></div>
+      <div className='mt-14'></div>
 
       <Routes>
         <Route path='/' element={<Welcome />} />
-        <Route path='/postentries' element={<PostEntries />} />
-        <Route path='/auth' element={<Login />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route element={<PrivateRoutes auth={isLogin} />}>
+        <Route path='auth' element={<Login />} />
+        <Route path='login' element={<Login />} />
+        <Route path='register' element={<Register />} />
+        <Route element={<PrivateRoutes />}>
           <Route path='home' element={<Home />} />
+          <Route path='postentries' element={<PostEntries />} />
           <Route path='editpost' element={<EditPost />} />
           <Route path='post/:id' element={<EditPost />} />
         </Route>
         <Route path='*' element={<NotFound />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   )
 }

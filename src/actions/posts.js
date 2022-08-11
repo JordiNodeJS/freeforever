@@ -26,35 +26,14 @@ export const startNewPost = () => async (dispatch, getState) => {
     console.log('newPostRef.id', newPostRef.id)
 
     dispatch(activePost(newPostRef.id, newPost))
-
-//   const docRef = await db.collection(`${name}${uid}/record/posts`).add({
-//     ...newPost,
-//     uid,
-//     name,
-//     })
-//     console.log(docRef)
-    // dispatch(createPost(docRef.id, newPost))
-
-//   const doc = db.collection(`${name}${uid}/record/posts`).add({
-//     ...newPost,
-//     uid,
-//     name,
-//     })
-//     .then(docRef => {
-//         console.log('Document written with ID: ', docRef.id)
-//         dispatch(createPost({ ...newPost, id: docRef.id }))
-//     }
-//     )
-//     .catch(error => {
-//         console.error('Error adding document: ', error)
-//     }
-//     )
-
-
-  //   if (auth.uid) {
-  //     dispatch(setNewPost(true))
-  //   }
 }
+export const activePost = (id, post) => ({
+  type: types.postsActive,
+  payload: {
+    id,
+    ...post,
+  },
+})
 
 export const startFetchPosts = uid => async dispatch => {
   const notes = await loadPosts(uid)
@@ -87,12 +66,6 @@ const loadPosts = async uid => {
 }
 
 
-const activePost = (id, post) => ({
-  type: types.postsActive,
-  payload: {
-    id,
-    ...post,
-  },
-})
+
 
 

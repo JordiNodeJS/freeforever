@@ -12,7 +12,7 @@ export const types = {
   finishLoading: 'MSG_FINISH_LOADING',
 
   postsAddNew: 'POSTS_ADD_NEW',
-  postsActive: 'POSTS_ACTIVE',
+  postsActive: 'ACTIVE POST',
   postsFetch: 'POSTS_FETCH',
   postsUpdate: 'POSTS_UPDATE',
   postsDelete: 'POSTS_DELETE',

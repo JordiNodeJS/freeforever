@@ -19,7 +19,7 @@ const SideBar = ({ isLogin }) => {
   }
 
   return (
-    <div className='bg-base-200'>
+    <div className='bg-base-200 z-10'>
       <div>
         <div className='btm-nav fixed top-0 flex justify-between items-center h-14'>
           <Link to='/home'>
@@ -39,7 +39,7 @@ const SideBar = ({ isLogin }) => {
               </svg>
             </button>
           </Link>
-          <Link to='postentries'>
+          <Link to='/postentries'>
             <button>
               <BsFillFilePostFill />
             </button>
