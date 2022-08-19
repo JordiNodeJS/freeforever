@@ -40,6 +40,15 @@ export const startFetchPosts = uid => async dispatch => {
   dispatch(setPosts(notes))
 }
 
+export const startSavePost = post => async (dispatch, getState) => {
+  const { uid } = getState().auth
+  const userCollectionRef = collection(db, `${uid}/record/posts`)
+  console.log('post.id',  post)
+
+  const postRef = doc(userCollectionRef, post.id)
+  await updateDoc(postRef, post)
+
+}
 
 const setPosts = posts => ({
   type: types.postsFetch,

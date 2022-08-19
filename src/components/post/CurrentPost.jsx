@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { activePost, startSavePost } from '../../actions'
 import { useForm } from '../../hooks/useForm'
 
 const CurrentPost = () => {
+  const dispatch = useDispatch()
   const { activePost: entry } = useSelector(state => state.posts)
 
   const [formValues, handleInputChange, reset] = useForm(entry)
@@ -17,6 +19,12 @@ const CurrentPost = () => {
     }
   }, [entry, reset])
 
+  useEffect(() => {
+    dispatch(activePost(formValues.id, { ...formValues }))
+  }, [formValues])
+
+  const handleSavePost = post => dispatch(startSavePost(post))
+
   return (
     <>
       <div className='card w-full bg-primary'>
@@ -25,6 +33,7 @@ const CurrentPost = () => {
             <label className='label text-sm'>Title</label>
             <input
               onChange={handleInputChange}
+              name='title'
               value={title}
               type='text'
               placeholder='Type here'
@@ -35,6 +44,7 @@ const CurrentPost = () => {
             <label className='label text-sm'>Body</label>
             <textarea
               onChange={handleInputChange}
+              name='body'
               value={body}
               type='text'
               placeholder='Type here'
@@ -43,6 +53,9 @@ const CurrentPost = () => {
           </div>
 
           <cite>Edited by {author}</cite>
+          <div className='card-actions justify-end'>
+            <button onClick={ _ => handleSavePost(entry)} className='btn btn-info'>Save</button>
+          </div>
         </div>
       </div>
       <div className='card w-96 bg-primary mt-2'>
