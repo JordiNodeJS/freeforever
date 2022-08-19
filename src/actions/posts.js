@@ -1,15 +1,15 @@
 import { types } from '../types'
 import { db } from '../firebase.config'
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore'
-
+import { toast } from 'react-toastify'
 
 export const startNewPost = () => async (dispatch, getState) => {
   const {
     auth: { uid, name },
   } = getState()
-  
+
   const auth = getState().auth
-  
+
   const newPost = {
     uid: uid,
     author: name,
@@ -18,14 +18,14 @@ export const startNewPost = () => async (dispatch, getState) => {
     date: new Date().getTime(),
   }
   const userCollectionRef = collection(db, `${uid}/record/posts`) //${name.split(' ').join('')}_${uid}
-  const newPostRef = await addDoc(userCollectionRef, newPost )
+  const newPostRef = await addDoc(userCollectionRef, newPost)
 
-    console.log(name, uid)
-    console.log(auth)
-    console.log('newPostRef', newPostRef)
-    console.log('newPostRef.id', newPostRef.id)
+  console.log(name, uid)
+  console.log(auth)
+  console.log('newPostRef', newPostRef)
+  console.log('newPostRef.id', newPostRef.id)
 
-    dispatch(activePost(newPostRef.id, newPost))
+  dispatch(activePost(newPostRef.id, newPost))
 }
 export const activePost = (id, post) => ({
   type: types.postsActive,
@@ -35,26 +35,27 @@ export const activePost = (id, post) => ({
   },
 })
 
+export const startSavePost = post => async (dispatch, getState) => {
+  const { uid } = getState().auth
+  const userCollectionRef = collection(db, `${uid}/record/posts`)
+  const postRef = doc(userCollectionRef, post.id)
+  await updateDoc(postRef, post)
+
+  dispatch(startFetchPosts(uid))
+
+  toast.success('🦄 Post saved!')
+
+}
+
 export const startFetchPosts = uid => async dispatch => {
   const notes = await loadPosts(uid)
   dispatch(setPosts(notes))
 }
 
-export const startSavePost = post => async (dispatch, getState) => {
-  const { uid } = getState().auth
-  const userCollectionRef = collection(db, `${uid}/record/posts`)
-  console.log('post.id',  post)
-
-  const postRef = doc(userCollectionRef, post.id)
-  await updateDoc(postRef, post)
-
-}
-
 const setPosts = posts => ({
   type: types.postsFetch,
   payload: posts,
-}
-)
+})
 
 const loadPosts = async uid => {
   const posts = []
@@ -68,13 +69,5 @@ const loadPosts = async uid => {
     })
   })
 
-
-
-  console.log('posts', ' => ', posts)
   return posts
 }
-
-
-
-
-

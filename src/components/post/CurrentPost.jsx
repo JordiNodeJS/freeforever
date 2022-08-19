@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { ToastContainer } from 'react-toastify'
+import { contextClass } from '../../utilities/style'
 import { activePost, startSavePost } from '../../actions'
 import { useForm } from '../../hooks/useForm'
 
@@ -54,7 +56,9 @@ const CurrentPost = () => {
 
           <cite>Edited by {author}</cite>
           <div className='card-actions justify-end'>
-            <button onClick={ _ => handleSavePost(entry)} className='btn btn-info'>Save</button>
+            <button onClick={_ => handleSavePost(entry)} className='btn btn-info'>
+              Save
+            </button>
           </div>
         </div>
       </div>
@@ -65,6 +69,15 @@ const CurrentPost = () => {
           <cite>{author}</cite>
         </div>
       </div>
+      <ToastContainer
+        toastClassName={({ type }) =>
+          contextClass[type || 'default'] +
+          ' relative flex p-1 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer'
+        }
+        bodyClassName={() => 'text-sm font-white font-med block p-3'}
+        position='bottom-center'
+        autoClose={3000}
+      />
     </>
   )
 }
