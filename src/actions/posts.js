@@ -20,11 +20,6 @@ export const startNewPost = () => async (dispatch, getState) => {
   const userCollectionRef = collection(db, `${uid}/record/posts`) //${name.split(' ').join('')}_${uid}
   const newPostRef = await addDoc(userCollectionRef, newPost)
 
-  console.log(name, uid)
-  console.log(auth)
-  console.log('newPostRef', newPostRef)
-  console.log('newPostRef.id', newPostRef.id)
-
   dispatch(activePost(newPostRef.id, newPost))
 }
 export const activePost = (id, post) => ({
@@ -48,17 +43,20 @@ export const startSavePost = post => async (dispatch, getState) => {
 }
 
 export const startFetchPosts = uid => async dispatch => {
-  const notes = await loadPosts(uid)
+  const notes = await fetchPosts(uid)
   dispatch(setPosts(notes))
 }
 
 // startUploadFile
 export const startUploadFile = file => async (dispatch, getState) => {
-  const { activePost } = getState().posts
-  console.log('activePost', activePost)
+  let { activePost: entry } = getState().posts
+  console.log('entry', entry)
   const fileUrl = await fileUpload(file)
-  console.log(fileUrl)
-
+   entry = {
+    ...entry,
+    image: fileUrl,
+  }
+  dispatch(activePost(entry.id, entry))
 }
 // uploadFile to Cloudinary
 const fileUpload = async file => {
@@ -72,21 +70,22 @@ const fileUpload = async file => {
       method: 'POST',
       body: data,
     })
-    const cloudinaryResp = res.ok ? await res.json() : console.log(res.json()) 
-    return cloudinaryResp.secure_url
+    const { secure_url } = res.ok ? await res.json() : null 
+    return secure_url
 
   } catch (error) {
     throw error
   }
-
 }
+
+
 
 const setPosts = posts => ({
   type: types.postsFetch,
   payload: posts,
 })
 
-const loadPosts = async uid => {
+const fetchPosts = async uid => {
   const posts = []
   const ref = collection(db, `${uid}/record/posts`)
   const postSnapShot = await getDocs(ref)

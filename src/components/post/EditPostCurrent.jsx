@@ -32,12 +32,6 @@ const CurrentPost = () => {
     const { files } = e.target
     const file = files[0]
     file && dispatch(startUploadFile(file))
-    // const reader = new FileReader()
-    // reader.onload = _ => {
-    //   const { result } = reader
-    //   dispatch(startSavePost({ ...formValues, image: result }))
-    // }
-    // reader.readAsDataURL(file)
   }
 
   const handleSavePost = post => dispatch(startSavePost(post))
@@ -83,12 +77,21 @@ const CurrentPost = () => {
           </div>
         </div>
       </div>
-      <div className='card w-96 bg-primary mt-2'>
-        <div className='card-body'>
-          <h1 className='card-title'>{title}</h1>
-          <p className='text-secondary-content'>{body}</p>
-          <cite>{author}</cite>
+      <div className='card w-6/12 bg-base-100 shadow-xl my-4 pb-2'>
+        <figure>
+          {entry.image ? <img src={ entry.image} alt={title} className='w-full' />
+          :
+          <img src={`https://placeimg.com/400/225/arch`} alt='Shoes' />          
+          }
+        </figure>
+        <div className='p-6'>
+          <div className='flex justify-between items-center mb-2'>
+            <h2 className='text-2xl font-light mb-3'>{title}</h2>
+          </div>
+          <p>{body}</p>
         </div>
+        <p>{author}</p>
+       
       </div>
       <ToastContainer
         toastClassName={({ type }) =>

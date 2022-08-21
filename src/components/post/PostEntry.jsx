@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { activePost } from '../../actions'
 
-const PostEntry = ({ id, title, body, author, date, children }) => {
+const PostEntry = ({ id, title, body, author, date, children, image }) => {
   // dates are in milliseconds
   const fecha =
     new Date(date).getDay() + '/' + new Date(date).getMonth() + '/' + new Date(date).getFullYear()
@@ -20,7 +20,7 @@ const PostEntry = ({ id, title, body, author, date, children }) => {
   const dispatch = useDispatch()
   const handlePostEntry = () => {
     console.log('post entry', title)
-    dispatch(activePost(id, { title, body, author, date }))
+    dispatch(activePost(id, { title, body, author, date, image }))
   }
 
   return (
@@ -28,7 +28,10 @@ const PostEntry = ({ id, title, body, author, date, children }) => {
 
       <div className='card w-11/12 bg-base-100 shadow-xl my-4 pb-2'>
         <figure>
-          <img src={`${urlDelay}https://placeimg.com/400/225/arch`} alt='Shoes' />
+          {image ? <img src={urlDelay + image} alt={title} className='w-full' />
+          :
+          <img src={`${urlDelay}https://placeimg.com/400/225/arch`} alt='Shoes' />          
+          }
         </figure>
         <div className='p-6'>
           <div className='flex justify-between items-center mb-2'>

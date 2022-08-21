@@ -1,5 +1,5 @@
 import SideBar from '../SideBar'
-import CurrentPost from './CurrentPost'
+import EditPostCurrent from './EditPostCurrent'
 import { useSelector } from 'react-redux'
 
 const EditPost = () => {
@@ -8,7 +8,7 @@ const EditPost = () => {
   return (
     <div>
       <SideBar />
-      <main className='flex flex-col items-center'>{activePost && author && <CurrentPost />}</main>
+      <main className='flex flex-col items-center'>{activePost && author && <EditPostCurrent />}</main>
     </div>
   )
 }
