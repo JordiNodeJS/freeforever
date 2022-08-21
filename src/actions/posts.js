@@ -52,6 +52,35 @@ export const startFetchPosts = uid => async dispatch => {
   dispatch(setPosts(notes))
 }
 
+// startUploadFile
+export const startUploadFile = file => async (dispatch, getState) => {
+  const { activePost } = getState().posts
+  console.log('activePost', activePost)
+  const fileUrl = await fileUpload(file)
+  console.log(fileUrl)
+
+}
+// uploadFile to Cloudinary
+const fileUpload = async file => {
+  const data = new FormData()
+  data.append('file', file)
+  data.append('upload_preset', 'react-post')
+  data.append('cloud_name', import.meta.env.VITE_API_CLOUDINARY_CLOUDNAME)
+
+  try {
+    const res = await fetch(import.meta.env.VITE_API_CLOUDINARY_URL_UPLOAD, {
+      method: 'POST',
+      body: data,
+    })
+    const cloudinaryResp = res.ok ? await res.json() : console.log(res.json()) 
+    return cloudinaryResp.secure_url
+
+  } catch (error) {
+    throw error
+  }
+
+}
+
 const setPosts = posts => ({
   type: types.postsFetch,
   payload: posts,

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
 import { contextClass } from '../../utilities/style'
-import { activePost, startSavePost } from '../../actions'
+import { activePost, startSavePost, startUploadFile } from '../../actions'
 import { useForm } from '../../hooks/useForm'
 
 const CurrentPost = () => {
@@ -24,6 +24,21 @@ const CurrentPost = () => {
   useEffect(() => {
     dispatch(activePost(formValues.id, { ...formValues }))
   }, [formValues])
+
+  const inputUploadRef = useRef()
+
+  const handleButtonUpload = _ => inputUploadRef.current.click()
+  const handleInputFileChange = e => {
+    const { files } = e.target
+    const file = files[0]
+    file && dispatch(startUploadFile(file))
+    // const reader = new FileReader()
+    // reader.onload = _ => {
+    //   const { result } = reader
+    //   dispatch(startSavePost({ ...formValues, image: result }))
+    // }
+    // reader.readAsDataURL(file)
+  }
 
   const handleSavePost = post => dispatch(startSavePost(post))
 
@@ -53,7 +68,13 @@ const CurrentPost = () => {
               className='textarea textarea-bordered h-24'
             />
           </div>
-
+          <div className='form-control card-actions'>
+            <button onClick={handleButtonUpload} className='btn btn-secondary'>Upload</button>
+            <input ref={inputUploadRef} onChange={handleInputFileChange} type='file' className='hidden' placeholder='Upload' />
+          </div>
+        <div>
+          {entry?.image && <img src={entry.image} alt='Post' className='w-full' />}
+        </div>
           <cite>Edited by {author}</cite>
           <div className='card-actions justify-end'>
             <button onClick={_ => handleSavePost(entry)} className='btn btn-info'>
