@@ -16,11 +16,13 @@ export const startNewPost = () => async (dispatch, getState) => {
     title: 'My new post',
     body: 'Post body',
     date: new Date().getTime(),
+    
   }
   const userCollectionRef = collection(db, `${uid}/record/posts`) //${name.split(' ').join('')}_${uid}
   const newPostRef = await addDoc(userCollectionRef, newPost)
 
   dispatch(activePost(newPostRef.id, newPost))
+  dispatch(startFetchPosts(uid))
 }
 export const activePost = (id, post) => ({
   type: types.postsActive,
@@ -34,11 +36,13 @@ export const startSavePost = post => async (dispatch, getState) => {
   const { uid } = getState().auth
   const userCollectionRef = collection(db, `${uid}/record/posts`)
   const postRef = doc(userCollectionRef, post.id)
+  post.image = post.image ?? 'https://via.placeholder.com/300/09f/fff.png'
+  
   await updateDoc(postRef, post)
 
   dispatch(startFetchPosts(uid))
 
-  toast.success('🦄 Post saved!')
+  toast.success('Post saved!')
 
 }
 
@@ -70,6 +74,7 @@ const fileUpload = async file => {
       method: 'POST',
       body: data,
     })
+    toast.info('Uploading...', { autoClose: 500 })
     const { secure_url } = res.ok ? await res.json() : null 
     return secure_url
 
@@ -77,8 +82,27 @@ const fileUpload = async file => {
     throw error
   }
 }
+// Delete posts from Firebase
+export const startDeletePost = post => async (dispatch, getState) => {
+  const { uid } = getState().auth
+  const userCollectionRef = collection(db, `${uid}/record/posts`)
+  const postRef = doc(userCollectionRef, post.id)
+  await deleteDoc(postRef)
 
+  
+  dispatch(deletePost(post))
+  
 
+  activePost(post.id, null)
+  
+  toast.success('Post deleted!')
+  dispatch(startFetchPosts(uid))
+}
+
+const deletePost = post => ({
+  type: types.postsDelete,
+  payload: post.id
+})
 
 const setPosts = posts => ({
   type: types.postsFetch,

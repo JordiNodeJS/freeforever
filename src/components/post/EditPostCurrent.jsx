@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
 import { contextClass } from '../../utilities/style'
-import { activePost, startSavePost, startUploadFile } from '../../actions'
+import { activePost, startDeletePost, startSavePost, startUploadFile } from '../../actions'
 import { useForm } from '../../hooks/useForm'
 
 const CurrentPost = () => {
@@ -35,6 +35,9 @@ const CurrentPost = () => {
   }
 
   const handleSavePost = post => dispatch(startSavePost(post))
+  
+
+  const handleDeletePost = post => dispatch(startDeletePost(post))
 
   return (
     <>
@@ -71,6 +74,7 @@ const CurrentPost = () => {
         </div>
           <cite>Edited by {author}</cite>
           <div className='card-actions justify-end'>
+            <button onClick={_ => handleDeletePost(entry)} className='btn btn-warning'>Delete</button>
             <button onClick={_ => handleSavePost(entry)} className='btn btn-info'>
               Save
             </button>
