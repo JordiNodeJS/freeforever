@@ -17,6 +17,6 @@ export const types = {
   postsUpdate: 'POSTS_UPDATE',
   postsDelete: 'POSTS_DELETE',
   postsUrl: 'POSTS_URL',
-  postsLogoutClean: 'POSTS_LOGOUT_CLEAN',
+  postsLogoutCleanUp: 'POSTS_LOGOUT_CLEANUP',
 
 }

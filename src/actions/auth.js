@@ -121,10 +121,15 @@ export const logout = () => ({
   type: types.logout,
 })
 
+export const logoutCleanPosts = _ => ({
+  type: types.postsLogoutCleanUp,
+})
+
 export const startLogout = () => dispatch => {
   signOut(auth)
     .then(() => {
       dispatch(logout())
+      dispatch(logoutCleanPosts())
     })
     .catch(err => {
       toast.error('🦄 ' + err.message)

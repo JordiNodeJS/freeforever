@@ -13,7 +13,7 @@ const PostEntry = ({ id, title, body, author, date, children, image }) => {
     ':' +
     new Date(date).getSeconds()
 
-  const delay = Math.floor(Math.random() * 10000) + 3000
+  const delay = Math.floor(Math.random() * 1000) + 100
   const urlDelay = `https://deelay.me/${delay}/`
 
   // handles the click event of the button

@@ -39,6 +39,14 @@ export const postsReducer = (state = { posts: [], activePost: null }, action) =>
         ...state,
         posts: state.posts.filter(post => post.id !== action.payload),
       }
+    case types.postsLogoutCleanUp:
+      return {
+        ...state,
+        posts: null,
+        activePost: null,
+
+      }
+
     default:
       return state
   }

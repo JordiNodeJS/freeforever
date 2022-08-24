@@ -88,7 +88,7 @@ export const startDeletePost = post => async (dispatch, getState) => {
   const userCollectionRef = collection(db, `${uid}/record/posts`)
   const postRef = doc(userCollectionRef, post.id)
   await deleteDoc(postRef)
-
+  
   
   dispatch(deletePost(post))
   dispatch(activePost(null))
