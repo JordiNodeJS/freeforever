@@ -13,3 +13,8 @@ export const startLoading = _ => ({
 export const finishLoading = _ => ({
   type: types.finishLoading,
 })
+
+export const isLogin = value =>  ({
+  type: types.isLogin,
+  payload: value,
+})

@@ -17,7 +17,7 @@ export const msgReducer = (state = initialState, action) => {
             ...state,
             msgError: null,
         }
-    // case types.startLoading:
+    case types.startLoading:
       return {
         ...state,
         loading: true,
@@ -26,6 +26,12 @@ export const msgReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+      }
+    
+    case types.isLogin:
+      return {
+        ...state,
+        isLogin: action.payload
       }
 
     default:

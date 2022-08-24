@@ -1,17 +1,17 @@
+import SideBar from '../SideBar'
+import EditPostCurrent from './EditPostCurrent'
 import { useSelector } from 'react-redux'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 import { contextClass } from '../../utilities/style'
 
-const Home = () => {
-  const { isLogin } = useSelector(state => state.msg)
-  toast.success('Welcome to the app')
 
+const EditPost = () => {
+  const { activePost } = useSelector(state => state.posts)
+  const { author } = activePost ?? 'No post selected'
   return (
-    <>
-      <h1>HOme</h1>
-  
-
+    <div>
+      <SideBar />
+      <main className='flex flex-col items-center'>{(activePost && author) ? <EditPostCurrent /> : <h1>No entry to edit</h1>}</main>
       <ToastContainer
         toastClassName={({ type }) =>
           contextClass[type || 'default'] +
@@ -21,8 +21,8 @@ const Home = () => {
         position='bottom-center'
         autoClose={3000}
       />
-    </>
+    </div>
   )
 }
 
-export default Home
+export default EditPost

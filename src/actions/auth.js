@@ -86,28 +86,10 @@ export const startRegisterEmailPasswordName = (email, password, name) => dispatc
       dispatch(finishLoading())
     })
 
-  // firebase
-  //   .auth()
-  //   .createUserWithEmailAndPassword(email, password)
-  //   .then(async ({ user }) => {
-  //     await updateProfile(user, {
-  //       displayName: name,
-  //     })
-  //     dispatch(login(user.uid, user.displayName))
-  //     console.log(user)
-  //   })
-  //   .catch(err => {
-  //     // alert(err.message)
-  //     toast.error('🦄 ' + err.message)
-  //     console.log('🦄', err.message)
-  //     dispatch(setError(err.message))
-  //   })
+
 }
 
-// export const startGoogleLogin = () => async dispatch => {
-//   const { user } = await firebase.auth().signInWithPopup(googleAuthProvider)
-//   dispatch(login(user.uid, user.displayName))
-// }
+
 
 export const loginGoogleAccount = (uid, displayName, photoURL) => ({
   type: types.loginGoogleAccount,
@@ -139,15 +121,25 @@ export const logout = () => ({
   type: types.logout,
 })
 
+export const logoutCleanPosts = _ => ({
+  type: types.postsLogoutCleanUp,
+})
+
 export const startLogout = () => dispatch => {
   signOut(auth)
     .then(() => {
       dispatch(logout())
+      dispatch(logoutCleanPosts())
     })
     .catch(err => {
       toast.error('🦄 ' + err.message)
     })
 }
+
+
+
+
+
 
 // export const startLogout = () => {
 //   return dispatch => {

@@ -3,6 +3,7 @@ export const types = {
   loginEmailAndPassword: 'AUTH_LOGIN_EMAIL_AND_PASSWORD',
   registerEmailAndPassword: 'AUTH_REGISTER_EMAIL_AND_PASSWORD',
   logout: 'AUTH_LOGOUT',
+  isLogin: 'AUTH_IS_LOGIN',
 
   uiSetError: 'MSG_SET_ERROR',
   uiRemoveError: 'MSG_REMOVE_ERROR',
@@ -11,11 +12,11 @@ export const types = {
   finishLoading: 'MSG_FINISH_LOADING',
 
   postsAddNew: 'POSTS_ADD_NEW',
-  postsActive: 'POSTS_ACTIVE',
+  postsActive: 'ACTIVE POST',
   postsFetch: 'POSTS_FETCH',
   postsUpdate: 'POSTS_UPDATE',
   postsDelete: 'POSTS_DELETE',
   postsUrl: 'POSTS_URL',
-  postsLogoutClean: 'POSTS_LOGOUT_CLEAN',
+  postsLogoutCleanUp: 'POSTS_LOGOUT_CLEANUP',
 
 }
