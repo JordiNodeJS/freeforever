@@ -91,9 +91,9 @@ export const startDeletePost = post => async (dispatch, getState) => {
 
   
   dispatch(deletePost(post))
-  
+  dispatch(activePost(null))
 
-  activePost(post.id, null)
+  
   
   toast.success('Post deleted!')
   dispatch(startFetchPosts(uid))

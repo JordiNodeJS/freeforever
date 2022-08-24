@@ -8,7 +8,7 @@ const EditPost = () => {
   return (
     <div>
       <SideBar />
-      <main className='flex flex-col items-center'>{activePost && author && <EditPostCurrent />}</main>
+      <main className='flex flex-col items-center'>{(activePost && author) ? <EditPostCurrent /> : <h1>No entry to edit</h1>}</main>
     </div>
   )
 }
