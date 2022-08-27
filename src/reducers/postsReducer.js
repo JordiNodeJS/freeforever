@@ -42,7 +42,7 @@ export const postsReducer = (state = { posts: [], activePost: null }, action) =>
     case types.postsLogoutCleanUp:
       return {
         ...state,
-        posts: null,
+        posts: [],
         activePost: null,
 
       }

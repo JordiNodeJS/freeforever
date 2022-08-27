@@ -2,7 +2,7 @@
 
 ## Getting the project started
 
-- Fork the project
+- Fork the project.
 - `npm install` 😎 it'll install all dependencies to run the project
 - `npm run dev` 👉 to start development server or
 - `npm run build` 👉 to compile the project and `npm run preview` 👉 to see the production server working
@@ -10,8 +10,8 @@
   - `npm i --legacy-peer-deps @animxyz/core `
   - `npm i --legacy-peer-deps @animxyz/react`
 
-- running the project
-  - create firebase account and copy the firebase config to file .env which you should've created at project's root
+- Running the localhost project 
+  - Create firebase account and copy the firebase config to file .env which you should've created at project's root.
   
  ```javascript
 VITE_API_KEY=****
@@ -21,12 +21,12 @@ VITE_STORAGE_BUCKET=****
 VITE_MESSAGING_SENDER_ID=****
 VITE_APP_ID=****
 ```
-  - for loading images you should have a Cloudinary account and create environment variable as:
+  - For loading images you should have a Cloudinary account and create environment variable as:
   ```javascript
   VITE_API_CLOUDINARY_URL_UPLOAD=***
   VITE_API_CLOUDINARY_CLOUDNAME=***  
   ```
-  - then you should config some set in your Cloudinary account:
+  - Then, you should config some set in your Cloudinary account:
     - Go to settings and in the tab Upload scroll at Upload presets Option and set it as **Unsigned** mode in the cloud name.
 
 ## Tecnological stack
@@ -59,4 +59,4 @@ VITE_APP_ID=****
 - [React icons](https://react-icons.github.io/react-icons)
 
 
-- Backend with [Firebase](https://console.firebase.google.com/)
+- Backend with [Firebase](https://console.firebase.google.com/) 🤢
