@@ -59,4 +59,4 @@ VITE_APP_ID=****
 - [React icons](https://react-icons.github.io/react-icons)
 
 
-- Backend with [Firebase](https://console.firebase.google.com/) 🤢
+- Backend with [Firebase](https://console.firebase.google.com/)
