@@ -15,11 +15,10 @@ const SideBar = ({ isLogin }) => {
   const handleAddEntry = () => {
     console.log('add entry', isLogin)
     isLogin ? dispatch(startNewPost()) : alert('Please login first')
-    // dispatch(startNewPost())
   }
 
   return (
-    <div className='bg-base-200 z-10'>
+    <div className='bg-base-200 z-50'>
       <div>
         <div className='btm-nav fixed top-0 flex justify-between items-center h-14'>
           <Link to='/home'>
