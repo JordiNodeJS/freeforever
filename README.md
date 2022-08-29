@@ -1,5 +1,8 @@
 # PROJECT'S NAME: freeFORever
 
+## Demo live 👇
+[🤪 Free For Ever](https://freeforever2022.netlify.app)
+
 ## Getting the project started
 
 - Fork the project.
@@ -64,9 +67,10 @@ VITE_APP_ID=****
 ### Helpers 
 Alias Command shell edition for git:
 
-```  nano ~/.profile ```
+`  nano ~/.profile `
+
 ```bash
-/c/Users/neo/.profile
+/c/Users/username/.profile
 
 alias gco="git checkout"
 alias gcb="git checkout -b"
@@ -85,6 +89,5 @@ alias gpusho="git push origin"
 alias gl="git log --oneline --graph"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Crese>
 alias dev="npm run dev"
-
 
 ```
