@@ -26,9 +26,9 @@ const PostEntry = ({ id, title, body, author, date, children, image }) => {
   return (
     <>
 
-      <div className='card w-11/12 bg-base-100 shadow-xl my-4 pb-2'>
+      <div className='rounded-3xl overflow-hidden w-11/12 bg-base-100 shadow-xl my-4 pb-2'>
         <figure>
-          {image ? <img src={urlDelay + image} alt={title} className='w-full' />
+          {image ? <img  src={urlDelay + image} alt={title} />
           :
           <img src={`${urlDelay}https://placeimg.com/400/225/arch`} alt='Shoes' />          
           }

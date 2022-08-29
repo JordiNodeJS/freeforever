@@ -64,13 +64,14 @@ export const startUploadFile = file => async (dispatch, getState) => {
 }
 // uploadFile to Cloudinary
 const fileUpload = async file => {
+  const URL_UPLOAD = `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_API_CLOUDINARY_CLOUDNAME}/image/upload`
   const data = new FormData()
   data.append('file', file)
   data.append('upload_preset', 'react-post')
   data.append('cloud_name', import.meta.env.VITE_API_CLOUDINARY_CLOUDNAME)
 
   try {
-    const res = await fetch(import.meta.env.VITE_API_CLOUDINARY_URL_UPLOAD, {
+    const res = await fetch(URL_UPLOAD, {
       method: 'POST',
       body: data,
     })
