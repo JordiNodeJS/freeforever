@@ -4,9 +4,10 @@ import { startLogout, startNewPost } from '../actions'
 import { AiOutlineLogout, AiOutlinePlusCircle } from 'react-icons/ai'
 import { BsFillFilePostFill } from 'react-icons/bs'
 
-const SideBar = ({ isLogin }) => {
+const SideBar = () => {
   const dispatch = useDispatch()
   const { name, photoURL } = useSelector(state => state.auth)
+  const { isLogin } = useSelector(state => state.msg)
 
   const handleLogout = () => {
     dispatch(startLogout())
@@ -43,9 +44,9 @@ const SideBar = ({ isLogin }) => {
               <BsFillFilePostFill />
             </button>
           </Link>
-          {isLogin &&  <button onClick={handleAddEntry} className='active text-xl'>
+          {isLogin &&  <Link to='/addpost'> <button onClick={handleAddEntry} className='active text-xl'>
               <AiOutlinePlusCircle />
-            </button>}
+            </button></Link>}
            
        
 

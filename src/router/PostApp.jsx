@@ -15,6 +15,7 @@ import { loginEmailAndPassword, loginGoogleAccount } from '../actions'
 import { startFetchPosts, isLogin } from '../actions'
 import PostEntries from '../components/post/PostEntries'
 import Footer from '../components/post/Footer'
+import AddPost from '../components/post/AddPost'
 
 const PostApp = () => {
   const [checkAuth, setCheckAuth] = useState(true)
@@ -51,7 +52,7 @@ const PostApp = () => {
 
   return (
     <BrowserRouter>
-      <SideBar isLogin={isLogin} />
+      <SideBar />
       <div className='mt-14'></div>
 
       <Routes>
@@ -63,6 +64,7 @@ const PostApp = () => {
           <Route path='home' element={<Home />} />
           <Route path='postentries' element={<PostEntries />} />
           <Route path='editpost' element={<EditPost />} />
+          <Route path='addpost' element={<AddPost />} />
           <Route path='post/:id' element={<EditPost />} />
         </Route>
         <Route path='*' element={<NotFound />} />

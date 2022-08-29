@@ -27,7 +27,7 @@ const CurrentPost = () => {
 
   const inputUploadRef = useRef()
 
-  const handleButtonUpload = _ => inputUploadRef.current.click()
+  const handleButtonUploadClick = _ => inputUploadRef.current.click()
   const handleInputFileChange = e => {
     const { files } = e.target
     const file = files[0]
@@ -66,8 +66,8 @@ const CurrentPost = () => {
             />
           </div>
           <div className='form-control card-actions'>
-            <button onClick={handleButtonUpload} className='btn btn-secondary'>Upload</button>
-            <input ref={inputUploadRef} onChange={handleInputFileChange} type='file' className='hidden' placeholder='Upload' />
+            <button onClick={handleButtonUploadClick} className='btn btn-secondary'>Upload</button>
+            <input onChange={handleInputFileChange} ref={inputUploadRef} type='file' className='hidden' />
           </div>
         <div>
           {entry?.image && <img src={entry.image} alt='Post' className='w-full' />}
