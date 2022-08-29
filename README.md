@@ -60,3 +60,31 @@ VITE_APP_ID=****
 
 
 - Backend with [Firebase](https://console.firebase.google.com/)
+
+### Helpers 
+Alias Command shell edition for git:
+
+```  nano ~/.profile ```
+```bash
+/c/Users/neo/.profile
+
+alias gco="git checkout"
+alias gcb="git checkout -b"
+alias gb="git branch"
+alias gba="git branch -a"
+alias gbvva="git branch -vva"
+alias gm="git merge"
+alias gbd="git branch -d"
+alias gbD="git branch -D"
+alias gs="git status"
+alias ga="git add ."
+alias gcm="git commit -m"
+alias gpush="git push"
+alias gpull="git pull"
+alias gpusho="git push origin"
+alias gl="git log --oneline --graph"
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Crese>
+alias dev="npm run dev"
+
+
+```
