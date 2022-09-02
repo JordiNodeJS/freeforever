@@ -1,9 +1,16 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
 import { contextClass } from '../../utilities/style'
-import { activePost, startDeletePost, startNewPost, startSavePost, startUploadFile } from '../../actions'
+import {
+  activePost,
+  startDeletePost,
+  startNewPost,
+  startSavePost,
+  startUploadFile,
+} from '../../actions'
 import { useForm } from '../../hooks/useForm'
+import { useHandleUpload } from '../../hooks/useHandleUpload'
 
 const AddPost = () => {
   const dispatch = useDispatch()
@@ -23,10 +30,9 @@ const AddPost = () => {
     dispatch(activePost(formValues.id, { ...formValues }))
   }, [formValues])
 
-  const inputUploadRef = useRef()
+  // Upload button
+  const [handleButtonUploadClick, handleInputFileChange, inputUploadRef] = useHandleUpload()
 
-  const handleButtonUploadClick = _ => {}
-  const handleInputFileChange = _ => {}
 
   // const handleSavePost = entry => dispatch(startSavePost(entry))
   const handleSavePost = entry =>
@@ -63,15 +69,21 @@ const AddPost = () => {
               Upload
             </button>
             <input
-              ref={inputUploadRef}
               onChange={handleInputFileChange}
+              ref={inputUploadRef}
               type='file'
               className='hidden'
-              placeholder='Upload'
             />
           </div>
+
           <div>
-            {/* {entry?.image && <img src={entry.image} alt='Post' className='w-full' />} */}
+            <figure>
+              {entry?.image ? (
+                <img src={entry.image} alt={title} className='w-full' />
+              ) : (
+                <img src={`https://placeimg.com/400/225/arch`} alt='Shoes' />
+              )}
+            </figure>
           </div>
           <cite>Edited by {author}</cite>
           <div className='card-actions justify-end'>
