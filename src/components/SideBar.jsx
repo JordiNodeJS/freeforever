@@ -13,10 +13,10 @@ const SideBar = () => {
     dispatch(startLogout())
   }
 
-  const handleAddEntry = () => {
-    console.log('add entry', isLogin)
-    isLogin ? dispatch(startNewPost()) : alert('Please login first')
-  }
+  // const handleAddEntry = () => {
+  //   console.log('add entry', isLogin)
+  //   isLogin ? dispatch(startNewPost()) : alert('Please login first')
+  // }
 
   return (
     <div className='bg-base-200 z-50'>
@@ -44,7 +44,7 @@ const SideBar = () => {
               <BsFillFilePostFill />
             </button>
           </Link>
-          {isLogin &&  <Link to='/addpost'> <button onClick={handleAddEntry} className='active text-xl'>
+          {isLogin &&  <Link to='/addpost'> <button className='active text-xl'>
               <AiOutlinePlusCircle />
             </button></Link>}
            
