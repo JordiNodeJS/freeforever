@@ -36,7 +36,6 @@ const CurrentPost = () => {
 
   const handleSavePost = post => dispatch(startSavePost(post))
   
-
   const handleDeletePost = post => dispatch(startDeletePost(post))
 
   return (

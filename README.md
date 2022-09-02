@@ -70,8 +70,12 @@ Alias Command shell edition for git:
 `  nano ~/.profile `
 
 ```bash
-/c/Users/username/.profile
 
+  GNU nano 5.8                 /c/Users/neo/.profile
+
+alias gs="git status"
+alias ga="git add ."
+alias gc="git commit -m"
 alias gco="git checkout"
 alias gcb="git checkout -b"
 alias gb="git branch"
@@ -80,14 +84,12 @@ alias gbvva="git branch -vva"
 alias gm="git merge"
 alias gbd="git branch -d"
 alias gbD="git branch -D"
-alias gs="git status"
-alias ga="git add ."
-alias gcm="git commit -m"
 alias gpush="git push"
 alias gpull="git pull"
 alias gpusho="git push origin"
 alias gl="git log --oneline --graph"
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Crese>
 alias dev="npm run dev"
+alias gcamend="git commit --amend -m"
 
 ```

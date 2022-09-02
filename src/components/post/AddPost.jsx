@@ -2,21 +2,22 @@ import { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
 import { contextClass } from '../../utilities/style'
-import { activePost, startDeletePost, startSavePost, startUploadFile } from '../../actions'
+import { activePost, startDeletePost, startNewPost, startSavePost, startUploadFile } from '../../actions'
 import { useForm } from '../../hooks/useForm'
 
 const AddPost = () => {
   const dispatch = useDispatch()
+  const { activePost: entry } = useSelector(state => state.posts)
+  const { isLogin } = useSelector(state => state.msg)
 
   const [formValues, handleInputChange] = useForm({
-    id: 321546,
-    title: 'new',
-    body: '',
+    title: 'new ' + Math.floor(Math.random() * 100 + 1),
+    body: 'content here',
     author: 'Tropomocho',
     date: 0,
   })
 
-  const { id, title, body, author, date } = formValues
+  const { title, body, author } = formValues
 
   useEffect(() => {
     dispatch(activePost(formValues.id, { ...formValues }))
@@ -26,6 +27,10 @@ const AddPost = () => {
 
   const handleButtonUploadClick = _ => {}
   const handleInputFileChange = _ => {}
+
+  // const handleSavePost = entry => dispatch(startSavePost(entry))
+  const handleSavePost = entry =>
+    isLogin ? dispatch(startNewPost(entry)) : alert('Please login first')
 
   return (
     <>

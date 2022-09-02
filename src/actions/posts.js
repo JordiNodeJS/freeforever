@@ -3,27 +3,28 @@ import { db } from '../firebase.config'
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 
-export const startNewPost = () => async (dispatch, getState) => {
+export const startNewPost = newPost => async (dispatch, getState) => {
   const {
     auth: { uid, name },
   } = getState()
 
-  const auth = getState().auth
+  delete newPost.id
 
-  const newPost = {
-    uid: uid,
-    author: name,
-    title: 'My new post',
-    body: 'Post body',
-    date: new Date().getTime(),
-    
-  }
   const userCollectionRef = collection(db, `${uid}/record/posts`) //${name.split(' ').join('')}_${uid}
   const newPostRef = await addDoc(userCollectionRef, newPost)
 
   dispatch(activePost(newPostRef.id, newPost))
+
+  await updateDoc(newPostRef, postWithIdFirestore(newPostRef.id, newPost))
+
   dispatch(startFetchPosts(uid))
 }
+
+const postWithIdFirestore = (id, post) => ({
+  id,
+  ...post,
+})
+
 export const activePost = (id, post) => ({
   type: types.postsActive,
   payload: {
@@ -37,13 +38,12 @@ export const startSavePost = post => async (dispatch, getState) => {
   const userCollectionRef = collection(db, `${uid}/record/posts`)
   const postRef = doc(userCollectionRef, post.id)
   post.image = post.image ?? 'https://via.placeholder.com/300/09f/fff.png'
-  
+
   await updateDoc(postRef, post)
 
   dispatch(startFetchPosts(uid))
 
   toast.success('Post saved!')
-
 }
 
 export const startFetchPosts = uid => async dispatch => {
@@ -56,7 +56,7 @@ export const startUploadFile = file => async (dispatch, getState) => {
   let { activePost: entry } = getState().posts
   console.log('entry', entry)
   const fileUrl = await fileUpload(file)
-   entry = {
+  entry = {
     ...entry,
     image: fileUrl,
   }
@@ -64,7 +64,9 @@ export const startUploadFile = file => async (dispatch, getState) => {
 }
 // uploadFile to Cloudinary
 const fileUpload = async file => {
-  const URL_UPLOAD = `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_API_CLOUDINARY_CLOUDNAME}/image/upload`
+  const URL_UPLOAD = `https://api.cloudinary.com/v1_1/${
+    import.meta.env.VITE_API_CLOUDINARY_CLOUDNAME
+  }/image/upload`
   const data = new FormData()
   data.append('file', file)
   data.append('upload_preset', 'react-post')
@@ -76,9 +78,8 @@ const fileUpload = async file => {
       body: data,
     })
     toast.info('Uploading...', { autoClose: 500 })
-    const { secure_url } = res.ok ? await res.json() : null 
+    const { secure_url } = res.ok ? await res.json() : null
     return secure_url
-
   } catch (error) {
     throw error
   }
@@ -89,20 +90,17 @@ export const startDeletePost = post => async (dispatch, getState) => {
   const userCollectionRef = collection(db, `${uid}/record/posts`)
   const postRef = doc(userCollectionRef, post.id)
   await deleteDoc(postRef)
-  
-  
+
   dispatch(deletePost(post))
   dispatch(activePost(null))
 
-  
-  
   toast.success('Post deleted!')
   dispatch(startFetchPosts(uid))
 }
 
 const deletePost = post => ({
   type: types.postsDelete,
-  payload: post.id
+  payload: post.id,
 })
 
 const setPosts = posts => ({
