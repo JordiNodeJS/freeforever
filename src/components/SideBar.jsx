@@ -19,9 +19,9 @@ const SideBar = () => {
   // }
 
   return (
-    <div className='bg-base-200 z-50'>
+    <div className='bg-base-200'>
       <div>
-        <div className='btm-nav fixed top-0 flex justify-between items-center h-14'>
+        <div className='btm-nav fixed top-0 flex justify-between items-center h-14 z-50'>
           <Link to='/home'>
             <button>
               <svg
