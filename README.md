@@ -64,6 +64,13 @@ VITE_APP_ID=****
 
 - Backend with [Firebase](https://console.firebase.google.com/)
 
+
+# App Map
+### To see whole interactive map click the link (easy peasy)
+[App Map Codesee](https://app.codesee.io/maps/public/2c11a4a0-061f-11ed-8830-5f479ea9b463)
+
+![map](./public/readme/app_map_code.png)
+
 ### Helpers 
 Alias Command for git's terminal bash edition.
 
