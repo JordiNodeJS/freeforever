@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   body {
     @apply m-0;
@@ -17,5 +16,25 @@
   hr {
     @apply block border-[#771fce] my-4;
   }
+  .logo {
+    will-change: filter;
+  }
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #bd3636);
+  }
+  .logo.react:hover {
+    filter: drop-shadow(0 0 2em #bd3636);
+  }
+  .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
 
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

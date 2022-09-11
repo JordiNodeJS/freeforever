@@ -65,9 +65,9 @@ VITE_APP_ID=****
 - Backend with [Firebase](https://console.firebase.google.com/)
 
 ### Helpers 
-Alias Command shell edition for git:
+Alias Command for git's terminal bash edition.
 
-`  nano ~/.profile `
+` nano ~/.profile `
 
 ```bash
 

@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify'
 import { contextClass } from '../../utilities/style'
 import { activePost, startDeletePost, startSavePost, startUploadFile } from '../../actions'
 import { useForm } from '../../hooks/useForm'
+import { useHandleUpload } from '../../hooks/useHandleUpload'
 
 const CurrentPost = () => {
   const dispatch = useDispatch()
@@ -25,14 +26,8 @@ const CurrentPost = () => {
     dispatch(activePost(formValues.id, { ...formValues }))
   }, [formValues])
 
-  const inputUploadRef = useRef()
-
-  const handleButtonUploadClick = _ => inputUploadRef.current.click()
-  const handleInputFileChange = e => {
-    const { files } = e.target
-    const file = files[0]
-    file && dispatch(startUploadFile(file))
-  }
+  // Upload button
+  const [handleButtonUploadClick, handleInputFileChange, inputUploadRef] = useHandleUpload()
 
   const handleSavePost = post => dispatch(startSavePost(post))
   
