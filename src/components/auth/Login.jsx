@@ -33,8 +33,8 @@ const Login = _ => {
   if (isLogin ) return <Navigate to='/home' />
 
   return (
-    <div data-theme='' className='hero min-h-screen bg-base-200 pt-14'>
-      <div className='md:hero-content  flex-col lg:flex-row-reverse'>
+    <div data-theme='' className='hero min-h-screen -mt-24 bg-base-200'>
+      <div className='md:hero-content flex flex-col lg:flex-row-reverse'>
         <div className='px-20 text-center lg:text-left'>
           <h1 className='text-5xl font-bold'>Login</h1>
           <p className='py-6'>Welcome to the login page.</p>

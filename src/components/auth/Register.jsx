@@ -48,7 +48,7 @@ const Register = () => {
   }
 
   return (
-    <div className='hero min-h-screen bg-base-200'>
+    <div className='hero min-h-screen -mt-16 bg-base-200'>
       <div className='md:hero-content flex-col lg:flex-row-reverse'>
         <div className='text-center lg:text-left'>
           <h1 className='text-5xl font-bold'>Register to the app</h1>

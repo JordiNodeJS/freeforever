@@ -3,15 +3,13 @@ import { Link } from 'react-router-dom'
 import { startLogout, startNewPost } from '../actions'
 import { AiOutlineLogout, AiOutlinePlusCircle } from 'react-icons/ai'
 import { BsFillFilePostFill } from 'react-icons/bs'
+import MenuBar from './MenuBar'
 
 const SideBar = () => {
   const dispatch = useDispatch()
   const { name, photoURL } = useSelector(state => state.auth)
   const { isLogin } = useSelector(state => state.msg)
 
-  const handleLogout = () => {
-    dispatch(startLogout())
-  }
 
   // const handleAddEntry = () => {
   //   console.log('add entry', isLogin)
@@ -21,7 +19,8 @@ const SideBar = () => {
   return (
     <div className='bg-base-200'>
       <div>
-        <div className='btm-nav fixed top-0 flex justify-between items-center h-14 z-50'>
+      <MenuBar />
+        <div className='btm-nav bottom-0 flex justify-between items-center h-14 z-50'>
           <Link to='/home'>
             <button>
               <svg
@@ -48,22 +47,7 @@ const SideBar = () => {
               <AiOutlinePlusCircle />
             </button></Link>}
            
-       
-
-          <div className='flex-row items-center flex-wrap'>
-            {/* <div className='avatar w-8 rounded-full'>
-              { photoURL && <img  src={ photoURL } alt='🎞' />}
-              </div> */}
-
-            <div className='ml-2 font-thin'>{name}</div>
-          </div>
-
-          <AiOutlineLogout
-            onClick={handleLogout}
-            type='button'
-            className='flex-1 min-w-fit h-5 w-5 mr-2'>
-            Log out
-          </AiOutlineLogout>
+      
         </div>
       </div>
     </div>
