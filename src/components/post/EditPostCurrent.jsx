@@ -35,7 +35,7 @@ const CurrentPost = () => {
 
   return (
     <>
-      <div className='card w-full bg-primary'>
+      <div className='card w-full bg-gray-800'>
         <div className='card-body'>
           <div className='card-title'>
             <label className='label text-sm'>Title</label>
@@ -68,8 +68,8 @@ const CurrentPost = () => {
         </div>
           <cite>Edited by {author}</cite>
           <div className='card-actions justify-end'>
-            <button onClick={_ => handleDeletePost(entry)} className='btn btn-warning'>Delete</button>
-            <button onClick={_ => handleSavePost(entry)} className='btn btn-info'>
+            <button onClick={_ => handleDeletePost(entry)} className='btn btn-primary'>Delete</button>
+            <button onClick={_ => handleSavePost(entry)} className='btn btn-outline btn-secondary'>
               Save
             </button>
           </div>

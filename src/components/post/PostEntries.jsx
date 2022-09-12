@@ -7,8 +7,7 @@ const PostEntries = () => {
 
   return (
     <>
-      <h1>PostEntries</h1>
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col items-center animate-fade'>
   
         {posts.map((post, index) => (
           <PostEntry key={post.id} {...post}>

@@ -40,7 +40,7 @@ const AddPost = () => {
 
   return (
     <>
-      <div className='card w-full bg-primary'>
+      <div className='card w-full bg-stone-700 animate-fade'>
         <div className='card-body'>
           <div className='card-title'>
             <label className='label text-sm'>Title</label>
@@ -87,10 +87,10 @@ const AddPost = () => {
           </div>
           <cite>Edited by {author}</cite>
           <div className='card-actions justify-end'>
-            <button onClick={_ => handleDeletePost(entry)} className='btn btn-warning'>
+            <button onClick={_ => handleDeletePost(entry)} className='btn btn-primary'>
               Delete
             </button>
-            <button onClick={_ => handleSavePost(entry)} className='btn btn-info'>
+            <button onClick={_ => handleSavePost(entry)} className='btn btn-outline btn-secondary active:bg-violet-700'>
               Save
             </button>
           </div>
