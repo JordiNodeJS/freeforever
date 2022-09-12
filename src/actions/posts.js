@@ -17,6 +17,8 @@ export const startNewPost = newPost => async (dispatch, getState) => {
 
   await updateDoc(newPostRef, postWithIdFirestore(newPostRef.id, newPost))
 
+  toast.success('Post ADDED!')
+
   dispatch(startFetchPosts(uid))
 }
 

@@ -54,9 +54,6 @@ VITE_APP_ID=****
 
 - validator.js is a JavaScript library that validates the structure of JavaScript objects.
 
-- [Animxyz](https://animxyz.com/) AnimXYZ is an animation library that simplifies adding CSS animations to a website or web application. AnimXYZ animations all compile to regular CSS behind the scenes, meaning they generally behave the same way CSS animations do. Once the page loads, the elements trigger automatically, run for the specified number of iterations, and then return to their original state.
-  - [Article blog](https://blog.logrocket.com/animate-react-app-animxyz/)
-  - `npm install @animxyz/core`
 - [react-toastify](https://www.npmjs.com/package/react-toastify) is a React component library that provides a simple way to display toast messages.`npm install --save --force react-toastify`
 
 - [React icons](https://react-icons.github.io/react-icons)
@@ -71,32 +68,3 @@ VITE_APP_ID=****
 
 ![map](./public/readme/app_map_code.png)
 
-### Helpers 
-Alias Command for git's terminal bash edition.
-
-` nano ~/.profile `
-
-```bash
-
-  GNU nano 5.8                 /c/Users/neo/.profile
-
-alias gs="git status"
-alias ga="git add ."
-alias gc="git commit -m"
-alias gco="git checkout"
-alias gcb="git checkout -b"
-alias gb="git branch"
-alias gba="git branch -a"
-alias gbvva="git branch -vva"
-alias gm="git merge"
-alias gbd="git branch -d"
-alias gbD="git branch -D"
-alias gpush="git push"
-alias gpull="git pull"
-alias gpusho="git push origin"
-alias gl="git log --oneline --graph"
-alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Crese>
-alias dev="npm run dev"
-alias gcamend="git commit --amend -m"
-
-```
