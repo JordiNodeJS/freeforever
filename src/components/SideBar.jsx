@@ -1,15 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { startLogout, startNewPost } from '../actions'
-import { AiOutlineLogout, AiOutlinePlusCircle } from 'react-icons/ai'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
 import { BsFillFilePostFill } from 'react-icons/bs'
 import MenuBar from './MenuBar'
 
 const SideBar = () => {
-  const dispatch = useDispatch()
-  const { name, photoURL } = useSelector(state => state.auth)
   const { isLogin } = useSelector(state => state.msg)
-
 
   // const handleAddEntry = () => {
   //   console.log('add entry', isLogin)
@@ -19,7 +15,7 @@ const SideBar = () => {
   return (
     <div className='bg-base-200'>
       <div>
-      <MenuBar />
+        <MenuBar />
         <div className='btm-nav bottom-0 flex justify-between items-center h-14 z-50'>
           <Link to='/home'>
             <button>
@@ -43,11 +39,14 @@ const SideBar = () => {
               <BsFillFilePostFill />
             </button>
           </Link>
-          {isLogin &&  <Link to='/addpost'> <button className='active text-xl'>
-              <AiOutlinePlusCircle />
-            </button></Link>}
-           
-      
+          {isLogin && (
+            <Link to='/addpost'>
+              {' '}
+              <button className='active text-xl'>
+                <AiOutlinePlusCircle />
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
