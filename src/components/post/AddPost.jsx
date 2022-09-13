@@ -24,7 +24,7 @@ const AddPost = () => {
   const { title, body, author } = formValues
 
   useEffect(() => {
-    dispatch(activePost(formValues.id, { ...formValues }))
+    dispatch(activePost(formValues.id, { ...entry,...formValues }))
   }, [formValues])
 
   // Upload button
