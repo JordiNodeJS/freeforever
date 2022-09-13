@@ -4,10 +4,7 @@ import { ToastContainer } from 'react-toastify'
 import { contextClass } from '../../utilities/style'
 import {
   activePost,
-  startDeletePost,
-  startNewPost,
-  startSavePost,
-  startUploadFile,
+  startNewPost
 } from '../../actions'
 import { useForm } from '../../hooks/useForm'
 import { useHandleUpload } from '../../hooks/useHandleUpload'
