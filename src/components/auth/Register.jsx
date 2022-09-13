@@ -105,7 +105,7 @@ const Register = () => {
                 name='password2'
                 value={password2}
                 onChange={handleInputChange}
-                type='text'
+                type='password'
                 placeholder='password'
                 className='input input-bordered'
               />
