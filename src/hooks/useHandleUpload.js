@@ -10,7 +10,7 @@ export const useHandleUpload = () => {
   const handleInputFileChange = e => {
     const { files } = e.target
     const file = files[0]
-    file && dispatch(startUploadFile(file))
+    file && dispatch(startUploadFile(file)) 
   }
   return [handleButtonUploadClick, handleInputFileChange, inputUploadRef]
 }

@@ -19,18 +19,19 @@ const CurrentPost = () => {
     if (entry?.id !== activeIdRef.current) {
       reset(entry)
       activeIdRef.current = entry?.id
+      dispatch(activePost(formValues.id, { ...entry, ...formValues }))
     }
   }, [entry, reset])
 
   useEffect(() => {
-    dispatch(activePost(formValues.id, { ...formValues }))
+    dispatch(activePost(formValues.id, { ...entry, ...formValues }))
   }, [formValues])
 
   // Upload button
   const [handleButtonUploadClick, handleInputFileChange, inputUploadRef] = useHandleUpload()
 
   const handleSavePost = post => dispatch(startSavePost(post))
-  
+
   const handleDeletePost = post => dispatch(startDeletePost(post))
 
   return (
@@ -60,15 +61,22 @@ const CurrentPost = () => {
             />
           </div>
           <div className='form-control card-actions'>
-            <button onClick={handleButtonUploadClick} className='btn btn-secondary'>Upload</button>
-            <input onChange={handleInputFileChange} ref={inputUploadRef} type='file' className='hidden' />
+            <button onClick={handleButtonUploadClick} className='btn btn-secondary'>
+              Upload
+            </button>
+            <input
+              onChange={handleInputFileChange}
+              ref={inputUploadRef}
+              type='file'
+              className='hidden'
+            />
           </div>
-        <div>
-          {entry?.image && <img src={entry.image} alt='Post' className='w-full' />}
-        </div>
+          <div>{entry?.image && <img src={entry.image} alt='Post' className='w-full' />}</div>
           <cite>Edited by {author}</cite>
           <div className='card-actions justify-end'>
-            <button onClick={_ => handleDeletePost(entry)} className='btn btn-primary'>Delete</button>
+            <button onClick={_ => handleDeletePost(entry)} className='btn btn-primary'>
+              Delete
+            </button>
             <button onClick={_ => handleSavePost(entry)} className='btn btn-outline btn-secondary'>
               Save
             </button>
@@ -77,10 +85,11 @@ const CurrentPost = () => {
       </div>
       <div className='card w-6/12 bg-base-100 shadow-xl my-4 pb-2'>
         <figure>
-          {entry.image ? <img src={ entry.image} alt={title} className='w-full' />
-          :
-          <img src={`https://placeimg.com/400/225/arch`} alt='Shoes' />          
-          }
+          {entry.image ? (
+            <img src={entry.image} alt={title} className='w-full' />
+          ) : (
+            <img src={`https://placeimg.com/400/225/arch`} alt='Shoes' />
+          )}
         </figure>
         <div className='p-6'>
           <div className='flex justify-between items-center mb-2'>
@@ -89,7 +98,6 @@ const CurrentPost = () => {
           <p>{body}</p>
         </div>
         <p>{author}</p>
-       
       </div>
       <ToastContainer
         toastClassName={({ type }) =>
