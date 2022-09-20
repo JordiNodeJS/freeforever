@@ -68,3 +68,18 @@ VITE_APP_ID=****
 
 ![map](./public/readme/app_map_code.png)
 
+## Features' App
+
+### Goals achived
+
+- Register:
+  - With your own email.
+  - By Gmail account.
+
+- Login
+- Private Routes
+  - You can access them by login.
+
+
+- Post's Edition with Firebase.
+  - CRUD operations: Create, Read, Update and Delete your posts recorded in a database as Firebase.
