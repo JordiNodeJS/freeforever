@@ -3,6 +3,7 @@ import { db } from '../firebase.config'
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 
+// Create a new post in the firebase database
 export const startNewPost = newPost => async (dispatch, getState) => {
   const {
     auth: { uid, name },
@@ -27,6 +28,7 @@ const postWithIdFirestore = (id, post) => ({
   ...post,
 })
 
+// formating the basic action
 export const activePost = (id, post) => ({
   type: types.postsActive,
   payload: {
@@ -35,6 +37,7 @@ export const activePost = (id, post) => ({
   },
 })
 
+// Update
 export const startSavePost = post => async (dispatch, getState) => {
   const { uid } = getState().auth
   const userCollectionRef = collection(db, `${uid}/record/posts`)
@@ -48,6 +51,7 @@ export const startSavePost = post => async (dispatch, getState) => {
   toast.success('Post saved!')
 }
 
+// Fetching all posts
 export const startFetchPosts = uid => async dispatch => {
   const notes = await fetchPosts(uid)
   dispatch(setPosts(notes))

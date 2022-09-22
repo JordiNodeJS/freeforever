@@ -78,9 +78,8 @@ const AddPost = () => {
               className='hidden'
             />
           </div>
-          <div className='container'>
-            <h3 className='text-center font-thin text-2xl mb-6'>Preview</h3>
-            <figure className='mb-2'>
+          <div>
+            <figure className='my-2'>
               {entry?.image ? (
                 <img src={entry.image} alt={title} className='w-full' />
               ) : (
@@ -102,20 +101,25 @@ const AddPost = () => {
         </div>
       </div>
       <div className='card w-6/12 bg-base-100 shadow-xl my-4 pb-2'>
-        {/* <figure>
-              {entry.image ? <img src={ entry.image} alt={title} className='w-full' />
-              :
-              <img src={`https://placeimg.com/400/225/arch`} alt='Shoes' />          
-              }
-            </figure> */}
-        <div className='p-6'>
-          <div className='flex justify-between items-center mb-2'>
-            <h2 className='text-2xl font-light mb-3'>{title}</h2>
+        <div className="card-body">
+          
+                <h3 className='text-center font-thin text-2xl mb-6'>Preview</h3>
+          <figure>
+                {entry.image ? <img src={ entry.image} alt={title} className='w-full' />
+                :
+                <img src={`https://placeimg.com/400/225/arch`} alt='Shoes' />
+                }
+              </figure>
+          <div className='p-6'>
+            <div className='flex justify-between items-center mb-2'>
+              <h2 className='text-2xl font-light mb-3'>{title}</h2>
+            </div>
+            <p>{body}</p>
           </div>
-          <p>{body}</p>
+          <p>{author}</p>
         </div>
-        <p>{author}</p>
       </div>
+
       <ToastContainer
         toastClassName={({ type }) =>
           contextClass[type || 'default'] +
@@ -123,7 +127,7 @@ const AddPost = () => {
         }
         bodyClassName={() => 'text-sm font-white font-med block p-3'}
         position='bottom-center'
-        autoClose={3000}
+        autoClose={1200}
       />
     </>
   )
