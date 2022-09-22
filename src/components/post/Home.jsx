@@ -33,8 +33,8 @@ const Home = () => {
               groups in Barcelona dedicated to such events.
             </p>
             <p className='mb-4 sm:text-xl dark:text-gray-400'>
-              This website is not to share free events or free experiences. It's about
-              STUFF. And STUFF only.
+              This website is not to share free events or free experiences. It's about STUFF. And
+              STUFF only.
             </p>
             <p className='mb-4 sm:text-xl dark:text-gray-400'>
               STUFF: FREE tangible stuff that you no longer need because you've grown out if it,
@@ -51,7 +51,7 @@ const Home = () => {
               We also share our unwanted stuff here out of kindness because this group is about
               GIVING. And it feels good to give.
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               This group is about STUFF not experiences AND DEFINITELY NOT FREE PUPPIES OR KITTENS
               or ANY OTHER ANIMAL, they are not free stuff but living beings!!
             </p>
@@ -93,7 +93,7 @@ const Home = () => {
               <h3 className='mb-2 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-800 to-sky-300'>
                 Marketing
               </h3>
-              <p className='text-gray-500 dark:text-gray-400'>
+              <p className='dark:text-gray-400'>
                 Plan it, create it, launch it. Collaborate seamlessly with the platform and hit your
                 marketing goals every month with our aims plan.
               </p>
@@ -111,7 +111,7 @@ const Home = () => {
               <h3 className='mb-2 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-800 to-sky-300'>
                 Legal
               </h3>
-              <p className='text-gray-500 dark:text-gray-400'>
+              <p className='dark:text-gray-400'>
                 Protect your personal data, devices and stay compliant with our structured workflows
                 and custom permissions made for you.
               </p>
@@ -134,7 +134,7 @@ const Home = () => {
               <h3 className='mb-2 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-800 to-sky-300'>
                 Business Automation
               </h3>
-              <p className='text-gray-500 dark:text-gray-400'>
+              <p className='dark:text-gray-400'>
                 Auto-assign tasks, send Slack messages, and much more.
               </p>
             </div>
@@ -156,7 +156,7 @@ const Home = () => {
               <h3 className='mb-2 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-800 to-sky-300'>
                 Donation
               </h3>
-              <p className='text-gray-500 dark:text-gray-400'>
+              <p className='dark:text-gray-400'>
                 Accept donations. Start a membership. Share anything you like. It’s easier than you
                 think.
               </p>
@@ -174,7 +174,7 @@ const Home = () => {
               <h3 className='mb-2 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-800 to-sky-300'>
                 Enterprise Design
               </h3>
-              <p className='text-gray-500 dark:text-gray-400'>
+              <p className='dark:text-gray-400'>
                 Craft beautiful, delightful experiences for both marketing and product with real
                 cross-company collaboration.
               </p>
@@ -196,7 +196,7 @@ const Home = () => {
               <h3 className='mb-2 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-800 to-sky-300'>
                 Operations
               </h3>
-              <p className='text-gray-500 dark:text-gray-400'>
+              <p className='dark:text-gray-400'>
                 Keep our community’s lights on with customizable, iterative, and structured
                 workflows built for all efficient teams and individual.
               </p>
