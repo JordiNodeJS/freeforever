@@ -18,36 +18,36 @@ const Home = () => {
               </span>{' '}
               Designed for environmentally conscious people like you
             </h2>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               Here at FreeForEver we focus on markets where technology, innovation, and capital can
               unlock long-term value and drive economic growth.
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               Good morning ladies and gentlemen and everyone in between.
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               Another gentle reminder that this group is for FREE STUFF.
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               We all love free events, free booze, free tattoos and free yoga but there are a ton of
               groups in Barcelona dedicated to such events.
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
-              This group is not the group to share free events or free experiences. It's about
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
+              This website is not to share free events or free experiences. It's about
               STUFF. And STUFF only.
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               STUFF: FREE tangible stuff that you no longer need because you've grown out if it,
               grown tired of it, or you're moving away and don't wish to carry it.
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               "Why not just throw the stuff out on the street?" Some of you ask.
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               WE DO - we take photos of stuff in the streets, and YOU CAN TOO! Please consult the
               Trash Day Map and post what you find! (Map linked below!!)
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               We also share our unwanted stuff here out of kindness because this group is about
               GIVING. And it feels good to give.
             </p>
@@ -55,20 +55,20 @@ const Home = () => {
               This group is about STUFF not experiences AND DEFINITELY NOT FREE PUPPIES OR KITTENS
               or ANY OTHER ANIMAL, they are not free stuff but living beings!!
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               IMPORTANT BTW: People who will not respect the rules will have their post deleted,
               themselves deleted or blocked, depending on the post.
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               Remember what you give comes back to you three-fold 😊
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               Have a lovely day ladies & gentlemen! ❤️️
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               Love from the FREE STUFF Barcelona fam. — in Barcelona, Spain.
             </p>
-            <p className='mb-4 text-gray-500 sm:text-xl dark:text-gray-400'>
+            <p className='mb-4 sm:text-xl dark:text-gray-400'>
               <iframe
                 className='w-full h-80'
                 src='https://www.google.com/maps/d/embed?mid=1l2VAhplHwkWYhNi6WOcDeqnxPoE&hl=en_US&ehbc=2E312F'
