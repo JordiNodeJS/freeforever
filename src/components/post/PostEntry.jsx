@@ -46,11 +46,13 @@ const PostEntry = ({ id, title, body, author, date, children, image }) => {
           </div>
           <p>{body}</p>
         </div>
-        <p>{author}</p>
-        <p>
-          {fecha} 🕔 {hora}
-        </p>
-        <cite>{children}</cite>
+        <div className='ml-6 mb-4'>
+          <p>{author}</p>
+          <p>
+            {fecha} 🕔 {hora}
+          </p>
+          <cite>{children}</cite>
+        </div>
       </div>
     </>
   )
