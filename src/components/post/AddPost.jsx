@@ -2,10 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
 import { contextClass } from '../../utilities/style'
-import {
-  activePost,
-  startNewPost
-} from '../../actions'
+import { activePost, startNewPost } from '../../actions'
 import { useForm } from '../../hooks/useForm'
 import { useHandleUpload } from '../../hooks/useHandleUpload'
 
@@ -24,12 +21,11 @@ const AddPost = () => {
   const { title, body, author } = formValues
 
   useEffect(() => {
-    dispatch(activePost(formValues.id, { ...entry,...formValues }))
+    dispatch(activePost(formValues.id, { ...entry, ...formValues }))
   }, [formValues])
 
   // Upload button
   const [handleButtonUploadClick, handleInputFileChange, inputUploadRef] = useHandleUpload()
-
 
   // const handleSavePost = entry => dispatch(startSavePost(entry))
   const handleSavePost = entry =>
@@ -61,6 +57,16 @@ const AddPost = () => {
               className='textarea textarea-bordered h-24'
             />
           </div>
+          <div className='form-control'>
+            <label className='label text-sm'>Author</label>
+            <input
+              onChange={handleInputChange}
+              type='text'
+              name='author'
+              value={author}
+              className='input w-full max-w-xs'
+            />
+          </div>
           <div className='form-control card-actions'>
             <button onClick={handleButtonUploadClick} className='btn btn-secondary'>
               Upload
@@ -72,13 +78,13 @@ const AddPost = () => {
               className='hidden'
             />
           </div>
-
-          <div>
-            <figure>
+          <div className='container'>
+            <h3 className='text-center font-thin text-2xl mb-6'>Preview</h3>
+            <figure className='mb-2'>
               {entry?.image ? (
                 <img src={entry.image} alt={title} className='w-full' />
               ) : (
-                <img src={`https://placeimg.com/400/225/arch`} alt='Shoes' />
+                <img src={`https://via.placeholder.com/200`} alt='Shoes' />
               )}
             </figure>
           </div>
@@ -87,7 +93,9 @@ const AddPost = () => {
             <button onClick={_ => handleDeletePost(entry)} className='btn btn-primary'>
               Delete
             </button>
-            <button onClick={_ => handleSavePost(entry)} className='btn btn-outline btn-secondary active:bg-violet-700'>
+            <button
+              onClick={_ => handleSavePost(entry)}
+              className='btn btn-outline btn-secondary active:bg-violet-700'>
               Save
             </button>
           </div>

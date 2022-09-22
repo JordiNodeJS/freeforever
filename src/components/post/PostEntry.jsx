@@ -26,7 +26,7 @@ const PostEntry = ({ id, title, body, author, date, children, image }) => {
   return (
     <>
 
-      <div className='rounded-3xl overflow-hidden w-11/12 bg-base-100 shadow-xl my-4 pb-2'>
+      <div className='rounded-3xl overflow-hidden bg-base-100 shadow-xl my-4 pb-2'>
         <figure>
           {image ? <img  src={urlDelay + image} alt={title} />
           :
