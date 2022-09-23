@@ -2,7 +2,7 @@ import { types } from '../types'
 import { db } from '../firebase.config'
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
-import { startNewPublicPost, postWithIdFirestore } from '../utils'
+import { startNewPublicPost } from '../utils'
 
 // Create a new post in the firebase database. This is an action creator that returns a thunk
 export const startNewPost = entry => async (dispatch, getState) => {
