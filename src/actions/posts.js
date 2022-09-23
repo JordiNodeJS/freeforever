@@ -64,7 +64,7 @@ export const startFetchPosts = uid => async dispatch => {
   dispatch(setPosts(notes))
 }
 
-// Fetching public posts
+// Fetching public posts. This is an action creator that returns a thunk
 export const startFetchPublic = uid => async dispatch => {
   const notes = await fetchPosts(uid)
   dispatch(setPublicPost(notes))
