@@ -139,8 +139,8 @@ const AddPost = () => {
         }
         bodyClassName={() => 'text-sm font-white font-med block p-3'}
         position='bottom-center'
-        // autoClose={1000}
-        closeOnClick
+        autoClose={800}
+        
       />
     </>
   )

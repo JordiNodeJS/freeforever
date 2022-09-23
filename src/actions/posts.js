@@ -21,7 +21,10 @@ export const startNewPost = entry => async (dispatch, getState) => {
   await updateDoc(newPostRef, postWithIdFirestore(newPostRef.id, newPost))
 
   toast.success('Post ADDED!', {
-    onClose: () => (window.location.href = 'postentries'),
+    onClose: () =>
+      setTimeout(() => {
+        window.location.href = 'postentries'
+      }, 1600),
   })
 
   dispatch(startFetchPosts(uid))
