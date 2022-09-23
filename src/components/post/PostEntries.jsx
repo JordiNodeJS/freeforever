@@ -7,7 +7,7 @@ const PostEntries = () => {
 
   return (
     <>
-      <div className='bg-white sm:p-6 dark:bg-gray-800 flex flex-col items-center animate-fade'>
+      <div className='sm:p-6 dark:bg-gray-800 flex flex-col items-center animate-fade'>
   
         {posts.map((post, index) => (
           <PostEntry key={post.id} {...post}>

@@ -5,6 +5,7 @@ import { contextClass } from '../../utilities/style'
 import { activePost, startNewPost } from '../../actions'
 import { useForm } from '../../hooks/useForm'
 import { useHandleUpload } from '../../hooks/useHandleUpload'
+import { Navigate } from 'react-router-dom'
 
 const AddPost = () => {
   const dispatch = useDispatch()
@@ -12,9 +13,10 @@ const AddPost = () => {
   const { isLogin } = useSelector(state => state.msg)
 
   const [formValues, handleInputChange] = useForm({
-    title: 'new ' + Math.floor(Math.random() * 100 + 1),
+    title: 'new ' + Math.floor(Math.random() * 10000 + 1),
     body: 'content here',
-    author: 'Tropomocho',
+    author: '',
+    image: '',
     date: 0,
   })
 
@@ -27,9 +29,19 @@ const AddPost = () => {
   // Upload button
   const [handleButtonUploadClick, handleInputFileChange, inputUploadRef] = useHandleUpload()
 
-  // const handleSavePost = entry => dispatch(startSavePost(entry))
   const handleSavePost = entry =>
     isLogin ? dispatch(startNewPost(entry)) : alert('Please login first')
+
+  // const handleSavePost = entry => {
+  //   if (isLogin) {
+  //     dispatch(startNewPost(entry))
+  //     setTimeout(() => {
+  //       window.location.href = 'postentries'        
+  //     }, 1000);
+  //     return null
+  //   } else alert('Please login first')
+  // }
+   
 
   return (
     <>
@@ -57,7 +69,7 @@ const AddPost = () => {
               className='textarea textarea-bordered h-24'
             />
           </div>
-          <div className='form-control'>
+          {/* <div className='form-control'>
             <label className='label text-sm'>Author</label>
             <input
               onChange={handleInputChange}
@@ -66,7 +78,7 @@ const AddPost = () => {
               value={author}
               className='input w-full max-w-xs'
             />
-          </div>
+          </div> */}
           <div className='form-control card-actions'>
             <button onClick={handleButtonUploadClick} className='btn btn-secondary'>
               Upload
@@ -78,10 +90,9 @@ const AddPost = () => {
               className='hidden'
             />
           </div>
-          <div className='container'>
-            <h3 className='text-center font-thin text-2xl mb-6'>Preview</h3>
-            <figure className='mb-2'>
-              {entry?.image ? (
+          <div>
+            <figure className='my-2'>
+              {entry && entry.image ? (
                 <img src={entry.image} alt={title} className='w-full' />
               ) : (
                 <img src={`https://via.placeholder.com/200`} alt='Shoes' />
@@ -102,20 +113,25 @@ const AddPost = () => {
         </div>
       </div>
       <div className='card w-6/12 bg-base-100 shadow-xl my-4 pb-2'>
-        {/* <figure>
-              {entry.image ? <img src={ entry.image} alt={title} className='w-full' />
-              :
-              <img src={`https://placeimg.com/400/225/arch`} alt='Shoes' />          
-              }
-            </figure> */}
-        <div className='p-6'>
-          <div className='flex justify-between items-center mb-2'>
-            <h2 className='text-2xl font-light mb-3'>{title}</h2>
+        <div className='card-body'>
+          <h3 className='text-center font-thin text-2xl mb-6'>Preview</h3>
+          <figure>
+            {entry && entry.image ? (
+              <img src={entry.image} alt={title} className='w-full' />
+            ) : (
+              <img src={`https://via.placeholder.com/150`} alt='Shoes' />
+            )}
+          </figure>
+          <div className='p-6'>
+            <div className='flex justify-between items-center mb-2'>
+              <h2 className='text-2xl font-light mb-3'>{title}</h2>
+            </div>
+            <p>{body}</p>
           </div>
-          <p>{body}</p>
+          <p>{author}</p>
         </div>
-        <p>{author}</p>
       </div>
+
       <ToastContainer
         toastClassName={({ type }) =>
           contextClass[type || 'default'] +
@@ -123,7 +139,8 @@ const AddPost = () => {
         }
         bodyClassName={() => 'text-sm font-white font-med block p-3'}
         position='bottom-center'
-        autoClose={3000}
+        autoClose={800}
+        
       />
     </>
   )

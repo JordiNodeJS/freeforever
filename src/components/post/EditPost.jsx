@@ -3,6 +3,7 @@ import EditPostCurrent from './EditPostCurrent'
 import { useSelector } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
 import { contextClass } from '../../utilities/style'
+import { Navigate } from 'react-router-dom'
 
 
 const EditPost = () => {
@@ -11,7 +12,7 @@ const EditPost = () => {
   return (
     <div>
       <SideBar />
-      <main className='flex flex-col items-center animate-fade'>{(activePost && author) ? <EditPostCurrent /> : <h1>No entry to edit</h1>}</main>
+      <main className='flex flex-col items-center animate-fade'>{(activePost && author) ? <EditPostCurrent /> : <Navigate to='/postentries' />}</main>
       <ToastContainer
         toastClassName={({ type }) =>
           contextClass[type || 'default'] +

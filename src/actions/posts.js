@@ -3,12 +3,15 @@ import { db } from '../firebase.config'
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
 
-export const startNewPost = newPost => async (dispatch, getState) => {
+// Create a new post in the firebase database. This is an action creator that returns a thunk
+export const startNewPost = entry => async (dispatch, getState) => {
   const {
     auth: { uid, name },
   } = getState()
 
-  delete newPost.id
+  delete entry.id
+
+  const newPost = { ...entry, uid, author: name }
 
   const userCollectionRef = collection(db, `${uid}/record/posts`) //${name.split(' ').join('')}_${uid}
   const newPostRef = await addDoc(userCollectionRef, newPost)
@@ -17,7 +20,12 @@ export const startNewPost = newPost => async (dispatch, getState) => {
 
   await updateDoc(newPostRef, postWithIdFirestore(newPostRef.id, newPost))
 
-  toast.success('Post ADDED!')
+  toast.success('Post ADDED!', {
+    onClose: () =>
+      setTimeout(() => {
+        window.location.href = 'postentries'
+      }, 1600),
+  })
 
   dispatch(startFetchPosts(uid))
 }
@@ -27,6 +35,7 @@ const postWithIdFirestore = (id, post) => ({
   ...post,
 })
 
+// formating the basic action
 export const activePost = (id, post) => ({
   type: types.postsActive,
   payload: {
@@ -35,6 +44,7 @@ export const activePost = (id, post) => ({
   },
 })
 
+// This is an Update action creator that returns a thunk
 export const startSavePost = post => async (dispatch, getState) => {
   const { uid } = getState().auth
   const userCollectionRef = collection(db, `${uid}/record/posts`)
@@ -48,12 +58,13 @@ export const startSavePost = post => async (dispatch, getState) => {
   toast.success('Post saved!')
 }
 
+// Fetching all posts. This is an action creator that returns a thunk
 export const startFetchPosts = uid => async dispatch => {
   const notes = await fetchPosts(uid)
   dispatch(setPosts(notes))
 }
 
-// startUploadFile
+// startUploadFile. Thunk
 export const startUploadFile = file => async (dispatch, getState) => {
   let { activePost: entry } = getState().posts
   console.log('entry', entry)
@@ -64,7 +75,7 @@ export const startUploadFile = file => async (dispatch, getState) => {
   }
   dispatch(activePost(entry.id, entry))
 }
-// uploadFile to Cloudinary
+// uploadFile to Cloudinary.
 const fileUpload = async file => {
   const URL_UPLOAD = `https://api.cloudinary.com/v1_1/${
     import.meta.env.VITE_API_CLOUDINARY_CLOUDNAME
@@ -86,7 +97,7 @@ const fileUpload = async file => {
     throw error
   }
 }
-// Delete posts from Firebase
+// Delete posts from Firebase. Thunk.
 export const startDeletePost = post => async (dispatch, getState) => {
   const { uid } = getState().auth
   const userCollectionRef = collection(db, `${uid}/record/posts`)
