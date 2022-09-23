@@ -27,7 +27,7 @@ export const startNewPost = entry => async (dispatch, getState) => {
     onClose: () =>
       setTimeout(() => {
         window.location.href = 'postentries'
-      }, 1600000),
+      }, 1600),
   })
 
   dispatch(startFetchPosts(uid))
