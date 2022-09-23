@@ -14,7 +14,7 @@ const MenuBar = () => {
   return (
     <div className='btm-nav top-0 flex justify-between items-center h-14 z-50'>
       <div className='flex items-start opacity-60 text-red-700'>
-        <NavLink to='/'>
+        <NavLink to='public'>
           <svg className='w-8 ml-1 logo' xmlns='http://www.w3.org/2000/svg' viewBox='15 15 720 720'>
             <circle cx='375' cy='375' r='360' />
             <path
