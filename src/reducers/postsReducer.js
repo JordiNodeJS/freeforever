@@ -12,12 +12,12 @@
 */
 import { types } from '../types'
 
-export const postsReducer = (state = { posts: [], activePost: null }, action) => {
+export const postsReducer = (state = { posts: [], publicPosts: [], activePost: null }, action) => {
   switch (action.type) {
     case types.postsActive:
       return {
         ...state,
-        activePost: {...action.payload },
+        activePost: { ...action.payload },
       }
     case types.postsFetch:
       return {
@@ -39,12 +39,18 @@ export const postsReducer = (state = { posts: [], activePost: null }, action) =>
         ...state,
         posts: state.posts.filter(post => post.id !== action.payload),
       }
+
+    case types.postsPublicFetch:
+      return {
+        ...state,
+        publicPosts: [...action.payload],
+      }
+
     case types.postsLogoutCleanUp:
       return {
         ...state,
         posts: [],
         activePost: null,
-
       }
 
     default:

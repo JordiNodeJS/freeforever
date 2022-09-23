@@ -17,6 +17,7 @@ import PostEntries from '../components/post/PostEntries'
 import Footer from '../components/post/Footer'
 import AddPost from '../components/post/AddPost'
 import TestPost from '../components/post/TestPost'
+import Public from '../components/post/Public'
 
 const PostApp = () => {
   const [checkAuth, setCheckAuth] = useState(true)
@@ -61,6 +62,7 @@ const PostApp = () => {
         <Route path='auth' element={<Login />} />
         <Route path='login' element={<Login />} />
         <Route path='register' element={<Register />} />
+        <Route path='public' element={<Public />} />
         <Route path='testpost' element={<TestPost />} />
         <Route element={<PrivateRoutes />}>
           <Route path='home' element={<Home />} />
