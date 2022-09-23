@@ -2,6 +2,7 @@ import { types } from '../types'
 import { db } from '../firebase.config'
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore'
 import { toast } from 'react-toastify'
+import { startNewPublicPost, postWithIdFirestore } from '../utils'
 
 // Create a new post in the firebase database. This is an action creator that returns a thunk
 export const startNewPost = entry => async (dispatch, getState) => {
@@ -18,7 +19,9 @@ export const startNewPost = entry => async (dispatch, getState) => {
 
   dispatch(activePost(newPostRef.id, newPost))
 
-  await updateDoc(newPostRef, postWithIdFirestore(newPostRef.id, newPost))
+  await updateDoc(newPostRef, {id: newPostRef.id, ...newPost})
+
+  startNewPublicPost(newPost)
 
   toast.success('Post ADDED!', {
     onClose: () =>
@@ -29,11 +32,6 @@ export const startNewPost = entry => async (dispatch, getState) => {
 
   dispatch(startFetchPosts(uid))
 }
-
-const postWithIdFirestore = (id, post) => ({
-  id,
-  ...post,
-})
 
 // formating the basic action
 export const activePost = (id, post) => ({
