@@ -6,7 +6,7 @@ const Welcome = () => {
   
   return (
     <>
-      <div className='hero min-h-screen' style={{ backgroundImage: `url(${background})` }}>
+      <div className='hero min-h-screen animate-fade' style={{ backgroundImage: `url(${background})` }}>
         <div className='hero-overlay bg-opacity-70' />
         <div className='hero-content text-center text-neutral-content'>
           <div className='max-w-md'>
