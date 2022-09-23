@@ -14,6 +14,7 @@ export const types = {
   postsAddNew: 'POSTS_ADD_NEW',
   postsActive: 'ACTIVE POST',
   postsFetch: 'POSTS_FETCH',
+  postsPublicFetch: 'PUBLIC POST',
   postsUpdate: 'POSTS_UPDATE',
   postsDelete: 'POSTS_DELETE',
   postsUrl: 'POSTS_URL',

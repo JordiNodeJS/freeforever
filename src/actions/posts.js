@@ -19,7 +19,7 @@ export const startNewPost = entry => async (dispatch, getState) => {
 
   dispatch(activePost(newPostRef.id, newPost))
 
-  await updateDoc(newPostRef, {id: newPostRef.id, ...newPost})
+  await updateDoc(newPostRef, { id: newPostRef.id, ...newPost })
 
   startNewPublicPost(newPost)
 
@@ -27,10 +27,12 @@ export const startNewPost = entry => async (dispatch, getState) => {
     onClose: () =>
       setTimeout(() => {
         window.location.href = 'postentries'
-      }, 1600),
+      }, 1600000),
   })
 
   dispatch(startFetchPosts(uid))
+  dispatch(startFetchPublic())
+
 }
 
 // formating the basic action
@@ -60,6 +62,12 @@ export const startSavePost = post => async (dispatch, getState) => {
 export const startFetchPosts = uid => async dispatch => {
   const notes = await fetchPosts(uid)
   dispatch(setPosts(notes))
+}
+
+// Fetching public posts
+export const startFetchPublic = uid => async dispatch => {
+  const notes = await fetchPosts(uid)
+  dispatch(setPublicPost(notes))
 }
 
 // startUploadFile. Thunk
@@ -119,9 +127,15 @@ const setPosts = posts => ({
   payload: posts,
 })
 
+const setPublicPost = posts => ({
+  type: types.postsPublicFetch,
+  payload: posts
+})
+
+
 const fetchPosts = async uid => {
   const posts = []
-  const ref = collection(db, `${uid}/record/posts`)
+  const ref = collection(db, uid == null ? 'public' : `${uid}/record/posts`)
   const postSnapShot = await getDocs(ref)
 
   postSnapShot.forEach(doc => {

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { AiOutlinePlusCircle } from 'react-icons/ai'
+import { NavLink } from 'react-router-dom'
+import { AiOutlinePlusCircle, AiFillRead } from 'react-icons/ai'
 import { BsFillFilePostFill } from 'react-icons/bs'
 import MenuBar from './MenuBar'
 
@@ -14,10 +14,11 @@ const SideBar = () => {
 
   return (
     <div className='bg-base-200'>
+    
       <div>
         <MenuBar />
         <div className='btm-nav bottom-0 flex justify-between items-center h-14 z-50'>
-          <Link to='/home'>
+          <NavLink title='Home Page 🏡' to='/home'>
             <button>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -33,19 +34,24 @@ const SideBar = () => {
                 />
               </svg>
             </button>
-          </Link>
-          <Link to='/postentries'>
+          </NavLink>
+          <NavLink title='Public 📖' to='/public'>
+          <button>
+              <AiFillRead />
+            </button>
+          </NavLink>
+          <NavLink title='Post edition 📚' to='/postentries'>
             <button>
               <BsFillFilePostFill />
             </button>
-          </Link>
+          </NavLink>
           {isLogin && (
-            <Link to='/addpost'>
+            <NavLink title='Add a post 👍' to='/addpost'>
               {' '}
               <button className='active text-xl'>
                 <AiOutlinePlusCircle />
               </button>
-            </Link>
+            </NavLink>
           )}
         </div>
       </div>
