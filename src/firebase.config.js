@@ -1,7 +1,3 @@
-// import firebase from 'firebase/compat/app'
-// import 'firebase/compat/firestore'
-// import 'firebase/compat/auth'
-// import { updateProfile } from 'firebase/auth'
 import { initializeApp } from 'firebase/app';
 import { getFirestore} from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
@@ -18,14 +14,6 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
 export const googleAuthProvider = new GoogleAuthProvider()
 
-
 export const db = getFirestore(app);
 
-
-// firebase.initializeApp(firebaseConfig)
-// const db = firebase.firestore()
-
-// const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
-
-// export { googleAuthProvider, db, firebase, updateProfile }
 // https://firebase.google.com/docs/web/modular-upgrade

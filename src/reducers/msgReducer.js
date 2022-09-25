@@ -5,6 +5,12 @@ const initialState = {
   msgError: null,
 }
 // reducer for the form validator messenges state
+/**
+ * The function takes in a state and an action and returns a new state.
+ * @param [state] - The current state of the store.
+ * @param action - {type: "ui/uiSetError", payload: "Error"}
+ * @returns The state of the application.
+ */
 export const msgReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.uiSetError:

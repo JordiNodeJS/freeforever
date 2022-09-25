@@ -12,6 +12,13 @@
 */
 import { types } from '../types'
 
+/**
+ * It's a reducer function that takes in a state and an action and returns a new state based on the
+ * action.type.
+ * @param [state] - the current state of the reducer
+ * @param action - {
+ * @returns The state is being returned.
+ */
 export const postsReducer = (state = { posts: [], publicPosts: [], activePost: null }, action) => {
   switch (action.type) {
     case types.postsActive:
