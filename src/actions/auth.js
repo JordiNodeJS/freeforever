@@ -11,6 +11,11 @@ import {
 import { auth, googleAuthProvider } from '../firebase.config'
 
 
+/**
+ * It dispatches an action to start the loading process, then it uses the firebase auth library to sign
+ * in with google, then it dispatches an action to log in the user, and it dispatches an action to
+ * finish the loading process.
+ */
 export const startGoogleLogin = () => dispatch => {
   signInWithPopup(auth, googleAuthProvider)
     .then(result => {
@@ -39,6 +44,14 @@ export const startGoogleLogin = () => dispatch => {
 //   }
 // }
 
+/**
+ * It dispatches a startLoading action, then it calls the signInWithEmailAndPassword function, which
+ * returns a promise. If the promise is resolved, it dispatches a loginEmailAndPassword action, then it
+ * dispatches a finishLoading action. If the promise is rejected, it logs the error, dispatches a
+ * setError action, displays a toast, and dispatches a finishLoading action.
+ * @param email - string
+ * @param password - string
+ */
 export const startLoginEmailPassword = (email, password) => dispatch => {
   dispatch(startLoading())
 
@@ -53,22 +66,16 @@ export const startLoginEmailPassword = (email, password) => dispatch => {
     dispatch(finishLoading())
   }
   )
-
-
-  // firebase
-  //   .auth()
-  //   .signInWithEmailAndPassword(email, password)
-  //   .then(({ user }) => {
-  //     dispatch(login(user.uid, user.displayName))
-
-  //     dispatch(finishLoading())
-  //   })
-  //   .catch(err => {
-
-  //     dispatch(finishLoading())
-  //   })
 }
 
+/**
+ * It dispatches a startLoading action, -> it creates a user with email and password, -> it updates
+ * the user's profile with the name, -> it dispatches a registerEmailAndPassword action, -> it
+ * dispatches a finishLoading action.
+ * @param email - string
+ * @param password - "123456"
+ * @param name - string
+ */
 export const startRegisterEmailPasswordName = (email, password, name) => dispatch => {
   dispatch(startLoading())
 
@@ -85,8 +92,6 @@ export const startRegisterEmailPasswordName = (email, password, name) => dispatc
       toast.warning(err.message)
       dispatch(finishLoading())
     })
-
-
 }
 
 
@@ -115,8 +120,6 @@ export const registerEmailAndPassword = (uid, displayName) => ({
   },
 })
 
-
-
 export const logout = () => ({
   type: types.logout,
 })
@@ -125,6 +128,9 @@ export const logoutCleanPosts = _ => ({
   type: types.postsLogoutCleanUp,
 })
 
+/**
+ * It dispatches two actions, one to logout and one to clean the posts.
+ */
 export const startLogout = () => dispatch => {
   signOut(auth)
     .then(() => {

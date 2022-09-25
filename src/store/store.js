@@ -4,6 +4,7 @@ import tunk from 'redux-thunk'
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose)
 
+/* Creating a store with the reducers and middleware. */
 const reducers = combineReducers({
   auth: authReducer,
   msg: msgReducer,

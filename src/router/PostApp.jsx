@@ -24,6 +24,7 @@ const PostApp = () => {
 
   const dispatch = useDispatch()
 
+  /* Checking if the user is logged in or not. */
   useEffect(() => {
     const auth = getAuth()
 
